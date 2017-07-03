@@ -1,0 +1,64 @@
+body {
+    color: white;
+    background-color: black;
+
+   -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;    
+}
+
+p {
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-weight: 300;
+    font-stretch: normal;
+    font-size: 18px;
+    line-height: 1.6em;
+    font-family: Helvetica, Arial, sans-serif;
+    display: inline-block;
+    margin: 5px;
+}
+
+.topicword {
+    display: inline-block;
+}
+
+.meta_label {
+    padding-left: 1em;
+}
+
+.topicwordlist {
+    padding-top: 1em;
+    padding-left: 1.75em;
+}
+
+.table-row {
+    height: 72vh;
+    overflow: scroll;
+}
+
+.wordweightcolumn {
+    height: 72vh;
+    overflow-y: scroll;
+}
+
+.invisible_topicwordlist {
+    display: none;
+}
+
+.invisible_topicword {
+    display: none;
+}
+
+.invisible_compositerank {
+    display: none;
+}
+
+.invisible_doctopicrank {
+    display: none;
+}
+
+.invisible_topicwordrank {
+    display: none;
+}

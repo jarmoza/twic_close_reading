@@ -1,0 +1,8 @@
+mallet_files_path: /Users/PeregrinePickle/Documents/Digital_Humanities/twic_hayfords_prisoners/data/output/mallet/
+mallet_state_file: hayfords_prisoners.topic-state.tsv
+mallet_topicweights_file: hayfords_prisoners.topics.tsv
+mallet_topics_file: hayfords_prisoners.keys.tsv
+mallet_wordweights_file: hayfords_prisoners.wordweights.tsv
+corpus_path: /Users/PeregrinePickle/Documents/Digital_Humanities/twic_hayfords_prisoners/data/input/txt/
+output_path: /Users/PeregrinePickle/Documents/Digital_Humanities/twic_close_reading/data/output/
+corpus_title: hayfords_prisoners
