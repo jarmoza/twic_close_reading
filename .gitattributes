@@ -1,0 +1,7 @@
+css/bootstrap.min.css linguist-vendored
+js/bootstrap.min.js linguist-vendored
+js/jquery-3.2.1.min.js linguist-vendored
+lib/mpmath/* linguist-vendored
+lib/unidecode.py linguist-vendored
+
+
