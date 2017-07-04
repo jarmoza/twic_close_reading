@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="twic_close_reading.css">
+		<script src="jquery-3.2.1.min.js"></script>
+		<script src="bootstrap.min.js"></script>
+		<script>
+			var topicColorTable = {};
+			
+			
+			function GetTopicIDClass(p_className){
+			
+			    var classList = p_className.split(/\s+/);
+			    return classList[1];
+			};
+			
+			function GetWordIDClass(p_className){
+			
+			    var classList = p_className.split(/\s+/);
+			    return classList[2];
+			};
+			
+			function TopicIDMatch(p_className1, p_className2){
+			    
+			    return GetTopicIDClass(p_className1) == GetTopicIDClass(p_className2);
+			};
+			
+			
+			function WordIDMatch(p_className1, p_className2){
+			    
+			    return GetWordIDClass(p_className1) == GetWordIDClass(p_className2);
+			};
+			
+			
+			function HoverEnter(){
+			
+			    var myClassName = this.className;
+			    var tagAndClass = this.tagName + "." + GetTopicIDClass(myClassName);
+			    var normBackground = $(this).css("color");
+			    var normColor = "dimgrey";
+			
+			    $(tagAndClass).each(function(){
+			        if ( WordIDMatch(myClassName, this.className) ) { 
+			            $(this).css({"background-color": "white", "color": "black"}); 
+			        } else {
+			            //$(this).css({"background-color": normBackground, "color": "white"});
+			            $(this).css({"background-color": "dimgrey", "color": "white"});
+			        }
+			    });
+			
+			    var topicIDClass = GetTopicIDClass(myClassName);
+			    var wordIDClass = GetWordIDClass(myClassName);
+			    $(".topicwordlist").text($(".invisible_topicwordlist." + topicIDClass).text());
+			    $(".topicwordlist").css({"color": topicColorTable[topicIDClass]});
+			    $(".meta_topicword").text($(".invisible_topicword." + topicIDClass + "." + wordIDClass).first().text());
+			    $(".meta_topicword").css({"color": topicColorTable[topicIDClass]});        
+			    $(".compositerank").text($(".invisible_compositerank." + topicIDClass + "." + wordIDClass).first().text());
+			    $(".compositerank").css({"color": topicColorTable[topicIDClass]});    
+			    $(".doctopicrank").text($(".invisible_doctopicrank." + topicIDClass + "." + wordIDClass).first().text());
+			    $(".doctopicrank").css({"color": topicColorTable[topicIDClass]});
+			    $(".topicwordrank").text($(".invisible_topicwordrank." + topicIDClass + "." + wordIDClass).first().text());
+			    $(".topicwordrank").css({"color": topicColorTable[topicIDClass]});    
+			};
+			
+			function HoverExit(){
+			
+			    var tagAndClass = this.tagName + "." + GetTopicIDClass(this.className);
+			    var bodyBackground = $("body").css("background-color");
+			
+			    $(tagAndClass).each(function(){
+			        $(tagAndClass).css({"background-color": bodyBackground,
+			                            "color": topicColorTable[GetTopicIDClass(this.className)]});
+			    });
+			};
+
+			$(function(){
+
+				$("span.topic24").hover(HoverEnter, HoverExit);
+				topicColorTable["topic24"] = $("span.topic24").css("color");
+				$("span.topic25").hover(HoverEnter, HoverExit);
+				topicColorTable["topic25"] = $("span.topic25").css("color");
+				$("span.topic26").hover(HoverEnter, HoverExit);
+				topicColorTable["topic26"] = $("span.topic26").css("color");
+				$("span.topic27").hover(HoverEnter, HoverExit);
+				topicColorTable["topic27"] = $("span.topic27").css("color");
+				$("span.topic20").hover(HoverEnter, HoverExit);
+				topicColorTable["topic20"] = $("span.topic20").css("color");
+				$("span.topic21").hover(HoverEnter, HoverExit);
+				topicColorTable["topic21"] = $("span.topic21").css("color");
+				$("span.topic22").hover(HoverEnter, HoverExit);
+				topicColorTable["topic22"] = $("span.topic22").css("color");
+				$("span.topic23").hover(HoverEnter, HoverExit);
+				topicColorTable["topic23"] = $("span.topic23").css("color");
+				$("span.topic28").hover(HoverEnter, HoverExit);
+				topicColorTable["topic28"] = $("span.topic28").css("color");
+				$("span.topic29").hover(HoverEnter, HoverExit);
+				topicColorTable["topic29"] = $("span.topic29").css("color");
+				$("span.topic0").hover(HoverEnter, HoverExit);
+				topicColorTable["topic0"] = $("span.topic0").css("color");
+				$("span.topic4").hover(HoverEnter, HoverExit);
+				topicColorTable["topic4"] = $("span.topic4").css("color");
+				$("span.topic8").hover(HoverEnter, HoverExit);
+				topicColorTable["topic8"] = $("span.topic8").css("color");
+				$("span.topic59").hover(HoverEnter, HoverExit);
+				topicColorTable["topic59"] = $("span.topic59").css("color");
+				$("span.topic58").hover(HoverEnter, HoverExit);
+				topicColorTable["topic58"] = $("span.topic58").css("color");
+				$("span.topic55").hover(HoverEnter, HoverExit);
+				topicColorTable["topic55"] = $("span.topic55").css("color");
+				$("span.topic54").hover(HoverEnter, HoverExit);
+				topicColorTable["topic54"] = $("span.topic54").css("color");
+				$("span.topic57").hover(HoverEnter, HoverExit);
+				topicColorTable["topic57"] = $("span.topic57").css("color");
+				$("span.topic56").hover(HoverEnter, HoverExit);
+				topicColorTable["topic56"] = $("span.topic56").css("color");
+				$("span.topic51").hover(HoverEnter, HoverExit);
+				topicColorTable["topic51"] = $("span.topic51").css("color");
+				$("span.topic50").hover(HoverEnter, HoverExit);
+				topicColorTable["topic50"] = $("span.topic50").css("color");
+				$("span.topic53").hover(HoverEnter, HoverExit);
+				topicColorTable["topic53"] = $("span.topic53").css("color");
+				$("span.topic52").hover(HoverEnter, HoverExit);
+				topicColorTable["topic52"] = $("span.topic52").css("color");
+				$("span.topic88").hover(HoverEnter, HoverExit);
+				topicColorTable["topic88"] = $("span.topic88").css("color");
+				$("span.topic89").hover(HoverEnter, HoverExit);
+				topicColorTable["topic89"] = $("span.topic89").css("color");
+				$("span.topic82").hover(HoverEnter, HoverExit);
+				topicColorTable["topic82"] = $("span.topic82").css("color");
+				$("span.topic83").hover(HoverEnter, HoverExit);
+				topicColorTable["topic83"] = $("span.topic83").css("color");
+				$("span.topic80").hover(HoverEnter, HoverExit);
+				topicColorTable["topic80"] = $("span.topic80").css("color");
+				$("span.topic81").hover(HoverEnter, HoverExit);
+				topicColorTable["topic81"] = $("span.topic81").css("color");
+				$("span.topic86").hover(HoverEnter, HoverExit);
+				topicColorTable["topic86"] = $("span.topic86").css("color");
+				$("span.topic87").hover(HoverEnter, HoverExit);
+				topicColorTable["topic87"] = $("span.topic87").css("color");
+				$("span.topic84").hover(HoverEnter, HoverExit);
+				topicColorTable["topic84"] = $("span.topic84").css("color");
+				$("span.topic85").hover(HoverEnter, HoverExit);
+				topicColorTable["topic85"] = $("span.topic85").css("color");
+				$("span.topic3").hover(HoverEnter, HoverExit);
+				topicColorTable["topic3"] = $("span.topic3").css("color");
+				$("span.topic7").hover(HoverEnter, HoverExit);
+				topicColorTable["topic7"] = $("span.topic7").css("color");
+				$("span.topic39").hover(HoverEnter, HoverExit);
+				topicColorTable["topic39"] = $("span.topic39").css("color");
+				$("span.topic38").hover(HoverEnter, HoverExit);
+				topicColorTable["topic38"] = $("span.topic38").css("color");
+				$("span.topic33").hover(HoverEnter, HoverExit);
+				topicColorTable["topic33"] = $("span.topic33").css("color");
+				$("span.topic32").hover(HoverEnter, HoverExit);
+				topicColorTable["topic32"] = $("span.topic32").css("color");
+				$("span.topic31").hover(HoverEnter, HoverExit);
+				topicColorTable["topic31"] = $("span.topic31").css("color");
+				$("span.topic30").hover(HoverEnter, HoverExit);
+				topicColorTable["topic30"] = $("span.topic30").css("color");
+				$("span.topic37").hover(HoverEnter, HoverExit);
+				topicColorTable["topic37"] = $("span.topic37").css("color");
+				$("span.topic36").hover(HoverEnter, HoverExit);
+				topicColorTable["topic36"] = $("span.topic36").css("color");
+				$("span.topic35").hover(HoverEnter, HoverExit);
+				topicColorTable["topic35"] = $("span.topic35").css("color");
+				$("span.topic34").hover(HoverEnter, HoverExit);
+				topicColorTable["topic34"] = $("span.topic34").css("color");
+				$("span.topic60").hover(HoverEnter, HoverExit);
+				topicColorTable["topic60"] = $("span.topic60").css("color");
+				$("span.topic61").hover(HoverEnter, HoverExit);
+				topicColorTable["topic61"] = $("span.topic61").css("color");
+				$("span.topic62").hover(HoverEnter, HoverExit);
+				topicColorTable["topic62"] = $("span.topic62").css("color");
+				$("span.topic63").hover(HoverEnter, HoverExit);
+				topicColorTable["topic63"] = $("span.topic63").css("color");
+				$("span.topic64").hover(HoverEnter, HoverExit);
+				topicColorTable["topic64"] = $("span.topic64").css("color");
+				$("span.topic65").hover(HoverEnter, HoverExit);
+				topicColorTable["topic65"] = $("span.topic65").css("color");
+				$("span.topic66").hover(HoverEnter, HoverExit);
+				topicColorTable["topic66"] = $("span.topic66").css("color");
+				$("span.topic67").hover(HoverEnter, HoverExit);
+				topicColorTable["topic67"] = $("span.topic67").css("color");
+				$("span.topic68").hover(HoverEnter, HoverExit);
+				topicColorTable["topic68"] = $("span.topic68").css("color");
+				$("span.topic69").hover(HoverEnter, HoverExit);
+				topicColorTable["topic69"] = $("span.topic69").css("color");
+				$("span.topic2").hover(HoverEnter, HoverExit);
+				topicColorTable["topic2"] = $("span.topic2").css("color");
+				$("span.topic6").hover(HoverEnter, HoverExit);
+				topicColorTable["topic6"] = $("span.topic6").css("color");
+				$("span.topic99").hover(HoverEnter, HoverExit);
+				topicColorTable["topic99"] = $("span.topic99").css("color");
+				$("span.topic98").hover(HoverEnter, HoverExit);
+				topicColorTable["topic98"] = $("span.topic98").css("color");
+				$("span.topic91").hover(HoverEnter, HoverExit);
+				topicColorTable["topic91"] = $("span.topic91").css("color");
+				$("span.topic90").hover(HoverEnter, HoverExit);
+				topicColorTable["topic90"] = $("span.topic90").css("color");
+				$("span.topic93").hover(HoverEnter, HoverExit);
+				topicColorTable["topic93"] = $("span.topic93").css("color");
+				$("span.topic92").hover(HoverEnter, HoverExit);
+				topicColorTable["topic92"] = $("span.topic92").css("color");
+				$("span.topic95").hover(HoverEnter, HoverExit);
+				topicColorTable["topic95"] = $("span.topic95").css("color");
+				$("span.topic94").hover(HoverEnter, HoverExit);
+				topicColorTable["topic94"] = $("span.topic94").css("color");
+				$("span.topic97").hover(HoverEnter, HoverExit);
+				topicColorTable["topic97"] = $("span.topic97").css("color");
+				$("span.topic96").hover(HoverEnter, HoverExit);
+				topicColorTable["topic96"] = $("span.topic96").css("color");
+				$("span.topic11").hover(HoverEnter, HoverExit);
+				topicColorTable["topic11"] = $("span.topic11").css("color");
+				$("span.topic10").hover(HoverEnter, HoverExit);
+				topicColorTable["topic10"] = $("span.topic10").css("color");
+				$("span.topic13").hover(HoverEnter, HoverExit);
+				topicColorTable["topic13"] = $("span.topic13").css("color");
+				$("span.topic12").hover(HoverEnter, HoverExit);
+				topicColorTable["topic12"] = $("span.topic12").css("color");
+				$("span.topic15").hover(HoverEnter, HoverExit);
+				topicColorTable["topic15"] = $("span.topic15").css("color");
+				$("span.topic14").hover(HoverEnter, HoverExit);
+				topicColorTable["topic14"] = $("span.topic14").css("color");
+				$("span.topic17").hover(HoverEnter, HoverExit);
+				topicColorTable["topic17"] = $("span.topic17").css("color");
+				$("span.topic16").hover(HoverEnter, HoverExit);
+				topicColorTable["topic16"] = $("span.topic16").css("color");
+				$("span.topic19").hover(HoverEnter, HoverExit);
+				topicColorTable["topic19"] = $("span.topic19").css("color");
+				$("span.topic18").hover(HoverEnter, HoverExit);
+				topicColorTable["topic18"] = $("span.topic18").css("color");
+				$("span.topic48").hover(HoverEnter, HoverExit);
+				topicColorTable["topic48"] = $("span.topic48").css("color");
+				$("span.topic49").hover(HoverEnter, HoverExit);
+				topicColorTable["topic49"] = $("span.topic49").css("color");
+				$("span.topic46").hover(HoverEnter, HoverExit);
+				topicColorTable["topic46"] = $("span.topic46").css("color");
+				$("span.topic47").hover(HoverEnter, HoverExit);
+				topicColorTable["topic47"] = $("span.topic47").css("color");
+				$("span.topic44").hover(HoverEnter, HoverExit);
+				topicColorTable["topic44"] = $("span.topic44").css("color");
+				$("span.topic45").hover(HoverEnter, HoverExit);
+				topicColorTable["topic45"] = $("span.topic45").css("color");
+				$("span.topic42").hover(HoverEnter, HoverExit);
+				topicColorTable["topic42"] = $("span.topic42").css("color");
+				$("span.topic43").hover(HoverEnter, HoverExit);
+				topicColorTable["topic43"] = $("span.topic43").css("color");
+				$("span.topic40").hover(HoverEnter, HoverExit);
+				topicColorTable["topic40"] = $("span.topic40").css("color");
+				$("span.topic41").hover(HoverEnter, HoverExit);
+				topicColorTable["topic41"] = $("span.topic41").css("color");
+				$("span.topic1").hover(HoverEnter, HoverExit);
+				topicColorTable["topic1"] = $("span.topic1").css("color");
+				$("span.topic5").hover(HoverEnter, HoverExit);
+				topicColorTable["topic5"] = $("span.topic5").css("color");
+				$("span.topic9").hover(HoverEnter, HoverExit);
+				topicColorTable["topic9"] = $("span.topic9").css("color");
+				$("span.topic77").hover(HoverEnter, HoverExit);
+				topicColorTable["topic77"] = $("span.topic77").css("color");
+				$("span.topic76").hover(HoverEnter, HoverExit);
+				topicColorTable["topic76"] = $("span.topic76").css("color");
+				$("span.topic75").hover(HoverEnter, HoverExit);
+				topicColorTable["topic75"] = $("span.topic75").css("color");
+				$("span.topic74").hover(HoverEnter, HoverExit);
+				topicColorTable["topic74"] = $("span.topic74").css("color");
+				$("span.topic73").hover(HoverEnter, HoverExit);
+				topicColorTable["topic73"] = $("span.topic73").css("color");
+				$("span.topic72").hover(HoverEnter, HoverExit);
+				topicColorTable["topic72"] = $("span.topic72").css("color");
+				$("span.topic71").hover(HoverEnter, HoverExit);
+				topicColorTable["topic71"] = $("span.topic71").css("color");
+				$("span.topic70").hover(HoverEnter, HoverExit);
+				topicColorTable["topic70"] = $("span.topic70").css("color");
+				$("span.topic79").hover(HoverEnter, HoverExit);
+				topicColorTable["topic79"] = $("span.topic79").css("color");
+				$("span.topic78").hover(HoverEnter, HoverExit);
+				topicColorTable["topic78"] = $("span.topic78").css("color");
+			});
+		</script>
+		<style>
+			.topic24 {
+				color: #d4d0ff;
+			}
+
+			.topic25 {
+				color: #cce864;
+			}
+
+			.topic26 {
+				color: #fcfff0;
+			}
+
+			.topic27 {
+				color: #3868ff;
+			}
+
+			.topic20 {
+				color: #c4ff70;
+			}
+
+			.topic21 {
+				color: #ffc064;
+			}
+
+			.topic22 {
+				color: #a0d8ff;
+			}
+
+			.topic23 {
+				color: #8cdcff;
+			}
+
+			.topic28 {
+				color: #ffaa84;
+			}
+
+			.topic29 {
+				color: #ff3084;
+			}
+
+			.topic0 {
+				color: #ff6c60;
+			}
+
+			.topic4 {
+				color: #98ff46;
+			}
+
+			.topic8 {
+				color: #ff80a8;
+			}
+
+			.topic59 {
+				color: #e0ff6a;
+			}
+
+			.topic58 {
+				color: #54c0ff;
+			}
+
+			.topic55 {
+				color: #e89cff;
+			}
+
+			.topic54 {
+				color: #e428ff;
+			}
+
+			.topic57 {
+				color: #c4a8ff;
+			}
+
+			.topic56 {
+				color: #28985c;
+			}
+
+			.topic51 {
+				color: #98f4ff;
+			}
+
+			.topic50 {
+				color: #acb4ff;
+			}
+
+			.topic53 {
+				color: #dcb4ff;
+			}
+
+			.topic52 {
+				color: #14ff5e;
+			}
+
+			.topic88 {
+				color: #24ff4c;
+			}
+
+			.topic89 {
+				color: #f480ff;
+			}
+
+			.topic82 {
+				color: #8460ff;
+			}
+
+			.topic83 {
+				color: #9480ff;
+			}
+
+			.topic80 {
+				color: #8878ac;
+			}
+
+			.topic81 {
+				color: #5488ff;
+			}
+
+			.topic86 {
+				color: #b0ccff;
+			}
+
+			.topic87 {
+				color: #945884;
+			}
+
+			.topic84 {
+				color: #4058ff;
+			}
+
+			.topic85 {
+				color: #80d0ff;
+			}
+
+			.topic3 {
+				color: #305c90;
+			}
+
+			.topic7 {
+				color: #607cff;
+			}
+
+			.topic39 {
+				color: #74b498;
+			}
+
+			.topic38 {
+				color: #489ce0;
+			}
+
+			.topic33 {
+				color: #b8ff48;
+			}
+
+			.topic32 {
+				color: #d8ecff;
+			}
+
+			.topic31 {
+				color: #4850ff;
+			}
+
+			.topic30 {
+				color: #d4ff3c;
+			}
+
+			.topic37 {
+				color: #ff4054;
+			}
+
+			.topic36 {
+				color: #a09488;
+			}
+
+			.topic35 {
+				color: #b050ac;
+			}
+
+			.topic34 {
+				color: #ff5c86;
+			}
+
+			.topic60 {
+				color: #1ca4ff;
+			}
+
+			.topic61 {
+				color: #d8c4c8;
+			}
+
+			.topic62 {
+				color: #04d0ff;
+			}
+
+			.topic63 {
+				color: #34ff86;
+			}
+
+			.topic64 {
+				color: #9c40f4;
+			}
+
+			.topic65 {
+				color: #44e850;
+			}
+
+			.topic66 {
+				color: #a8a4ff;
+			}
+
+			.topic67 {
+				color: #64b0ff;
+			}
+
+			.topic68 {
+				color: #9030bc;
+			}
+
+			.topic69 {
+				color: #8cb8ff;
+			}
+
+			.topic2 {
+				color: #d840c0;
+			}
+
+			.topic6 {
+				color: #a4ffbc;
+			}
+
+			.topic99 {
+				color: #944840;
+			}
+
+			.topic98 {
+				color: #7870ff;
+			}
+
+			.topic91 {
+				color: #ecc0ff;
+			}
+
+			.topic90 {
+				color: #cc4870;
+			}
+
+			.topic93 {
+				color: #f0dc84;
+			}
+
+			.topic92 {
+				color: #60dc9c;
+			}
+
+			.topic95 {
+				color: #b49cff;
+			}
+
+			.topic94 {
+				color: #44f4ff;
+			}
+
+			.topic97 {
+				color: #d074d8;
+			}
+
+			.topic96 {
+				color: #f068ff;
+			}
+
+			.topic11 {
+				color: #60ecd4;
+			}
+
+			.topic10 {
+				color: #ff50c4;
+			}
+
+			.topic13 {
+				color: #78ffc8;
+			}
+
+			.topic12 {
+				color: #d080ff;
+			}
+
+			.topic15 {
+				color: #40ff04;
+			}
+
+			.topic14 {
+				color: #ff0c96;
+			}
+
+			.topic17 {
+				color: #ff9caa;
+			}
+
+			.topic16 {
+				color: #14c0a0;
+			}
+
+			.topic19 {
+				color: #ff906c;
+			}
+
+			.topic18 {
+				color: #ffdc90;
+			}
+
+			.topic48 {
+				color: #e094ac;
+			}
+
+			.topic49 {
+				color: #6cd058;
+			}
+
+			.topic46 {
+				color: #68fff8;
+			}
+
+			.topic47 {
+				color: #ecff50;
+			}
+
+			.topic44 {
+				color: #f48cc8;
+			}
+
+			.topic45 {
+				color: #84ff48;
+			}
+
+			.topic42 {
+				color: #b074ff;
+			}
+
+			.topic43 {
+				color: #28e410;
+			}
+
+			.topic40 {
+				color: #7098c4;
+			}
+
+			.topic41 {
+				color: #8cccff;
+			}
+
+			.topic1 {
+				color: #fff0be;
+			}
+
+			.topic5 {
+				color: #4c6cfc;
+			}
+
+			.topic9 {
+				color: #50fcff;
+			}
+
+			.topic77 {
+				color: #ec0cb0;
+			}
+
+			.topic76 {
+				color: #98a8ff;
+			}
+
+			.topic75 {
+				color: #6458ff;
+			}
+
+			.topic74 {
+				color: #9498c8;
+			}
+
+			.topic73 {
+				color: #84c080;
+			}
+
+			.topic72 {
+				color: #5c70ff;
+			}
+
+			.topic71 {
+				color: #ec50ff;
+			}
+
+			.topic70 {
+				color: #ffcc34;
+			}
+
+			.topic79 {
+				color: #d0b0ff;
+			}
+
+			.topic78 {
+				color: #3000ff;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row table-row">
+				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+					<p><span class="normword">An</span><span>&nbsp;</span><span class="topicword topic33 topic33_1780" style="color:#b8ff48;">uncommon</span><span>&nbsp;</span><span class="topicword topic33 topic33_1781" style="color:#b8ff48;">prudence</span><span>&nbsp;</span><span class="normword">is</span><span>&nbsp;</span><span class="topicword topic1 topic1_836" style="color:#fff0be;">habitual</span><span>&nbsp;</span><span class="normword">with</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic83 topic83_1788" style="color:#9480ff;">subtler</span><span>&nbsp;</span><span class="topicword topic2 topic2_1156" style="color:#d840c0;">depravity,</span><span>&nbsp;</span><span class="normword">for</span><span>&nbsp;</span><span class="normword">it</span><span>&nbsp;</span><span class="normword">has</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">everything</span><span>&nbsp;</span><span class="normword">to</span><span>&nbsp;</span><span class="topicword topic83 topic83_1789" style="color:#9480ff;">hide.</span><span>&nbsp;</span><span class="normword">And</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="topicword topic33 topic33_1782" style="color:#b8ff48;">case</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="normword">an</span><span>&nbsp;</span><span class="topicword topic2 topic2_1157" style="color:#d840c0;">injury</span><span>&nbsp;</span><span class="normword">but</span><span>&nbsp;</span><span class="topicword topic83 topic83_1790" style="color:#9480ff;">suspected,</span><span>&nbsp;</span><span class="normword">its</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic20 topic20_1184" style="color:#c4ff70;">secretiveness</span><span>&nbsp;</span><span class="topicword topic98 topic98_2667" style="color:#7870ff;">voluntarily</span><span>&nbsp;</span><span class="topicword topic98 topic98_2668" style="color:#7870ff;">cuts</span><span>&nbsp;</span><span class="normword">it</span><span>&nbsp;</span><span class="normword">off</span><span>&nbsp;</span><span class="normword">from</span><span>&nbsp;</span><span class="topicword topic83 topic83_1791" style="color:#9480ff;">enlightenment</span><span>&nbsp;</span><span class="normword">or</span><span>&nbsp;</span><span class="topicword topic55 topic55_1320" style="color:#e89cff;">disillusion;</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">and,</span><span>&nbsp;</span><span class="normword">not</span><span>&nbsp;</span><span class="topicword topic83 topic83_1792" style="color:#9480ff;">unreluctantly,</span><span>&nbsp;</span><span class="topicword topic33 topic33_1783" style="color:#b8ff48;">action</span><span>&nbsp;</span><span class="normword">is</span><span>&nbsp;</span><span class="normword">taken</span><span>&nbsp;</span><span class="normword">upon</span><span>&nbsp;</span><span class="topicword topic33 topic33_1784" style="color:#b8ff48;">surmise</span><span>&nbsp;</span><span class="normword">as</span><span>&nbsp;</span><span class="normword">upon</span><span>&nbsp;</span><span class="topicword topic98 topic98_2669" style="color:#7870ff;">certainty.</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">And</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic83 topic83_1793" style="color:#9480ff;">retaliation</span><span>&nbsp;</span><span class="normword">is</span><span>&nbsp;</span><span class="topicword topic83 topic83_1794" style="color:#9480ff;">apt</span><span>&nbsp;</span><span class="normword">to</span><span>&nbsp;</span><span class="normword">be</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="topicword topic54 topic54_1540" style="color:#e428ff;">monstrous</span><span>&nbsp;</span><span class="topicword topic83 topic83_1795" style="color:#9480ff;">disproportion</span><span>&nbsp;</span><span class="normword">to</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic83 topic83_1796" style="color:#9480ff;">supposed</span><span>&nbsp;</span><span class="topicword topic83 topic83_1797" style="color:#9480ff;">offence;</span><span>&nbsp;</span><span class="normword">for</span><span>&nbsp;</span><span class="normword">when</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="normword">anybody</span><span>&nbsp;</span><span class="normword">was</span><span>&nbsp;</span><span class="topicword topic90 topic90_1543" style="color:#cc4870;">revenge</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="normword">its</span><span>&nbsp;</span><span class="topicword topic83 topic83_1798" style="color:#9480ff;">exactions</span><span>&nbsp;</span><span class="topicword topic33 topic33_1785" style="color:#b8ff48;">aught</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">else</span><span>&nbsp;</span><span class="normword">but</span><span>&nbsp;</span><span class="normword">an</span><span>&nbsp;</span><span class="topicword topic98 topic98_2670" style="color:#7870ff;">inordinate</span><span>&nbsp;</span><span class="topicword topic33 topic33_1786" style="color:#b8ff48;">usurer?</span><span>&nbsp;</span><span class="normword">But</span><span>&nbsp;</span><span class="normword">how</span><span>&nbsp;</span><span class="normword">with</span><span>&nbsp;</span><span class="topicword topic83 topic83_1803" style="color:#9480ff;">Claggart's</span><span>&nbsp;</span><span class="topicword topic98 topic98_2683" style="color:#7870ff;">conscience?</span><span>&nbsp;</span><span class="normword">For</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">though</span><span>&nbsp;</span><span class="topicword topic83 topic83_1800" style="color:#9480ff;">consciences</span><span>&nbsp;</span><span class="normword">are</span><span>&nbsp;</span><span class="topicword topic83 topic83_1801" style="color:#9480ff;">unlike</span><span>&nbsp;</span><span class="normword">as</span><span>&nbsp;</span><span class="topicword topic55 topic55_1321" style="color:#e89cff;">foreheads,</span><span>&nbsp;</span><span class="normword">every</span><span>&nbsp;</span><span class="topicword topic83 topic83_1802" style="color:#9480ff;">intelligence,</span><span>&nbsp;</span><span class="normword">not</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic90 topic90_1544" style="color:#cc4870;">excluding</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic33 topic33_1787" style="color:#b8ff48;">Scriptural</span><span>&nbsp;</span><span class="topicword topic20 topic20_1185" style="color:#c4ff70;">devils</span><span>&nbsp;</span><span class="normword">who</span><span>&nbsp;</span><span class="normword">"believe</span><span>&nbsp;</span><span class="normword">and</span><span>&nbsp;</span><span class="topicword topic98 topic98_2672" style="color:#7870ff;">tremble,"</span><span>&nbsp;</span><span class="normword">has</span><span>&nbsp;</span><span class="normword">one.</span><span>&nbsp;</span><span class="normword">But</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic83 topic83_1803" style="color:#9480ff;">Claggart's</span><span>&nbsp;</span><span class="topicword topic98 topic98_2683" style="color:#7870ff;">conscience</span><span>&nbsp;</span><span class="normword">being</span><span>&nbsp;</span><span class="normword">but</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic37 topic37_1329" style="color:#ff4054;">lawyer</span><span>&nbsp;</span><span class="normword">to</span><span>&nbsp;</span><span class="normword">his</span><span>&nbsp;</span><span class="normword">will,</span><span>&nbsp;</span><span class="topicword topic55 topic55_1323" style="color:#e89cff;">made</span><span>&nbsp;</span><span class="topicword topic2 topic2_1158" style="color:#d840c0;">ogres</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic37 topic37_1330" style="color:#ff4054;">trifles,</span><span>&nbsp;</span><span class="normword">probably</span><span>&nbsp;</span><span class="topicword topic98 topic98_2674" style="color:#7870ff;">arguing</span><span>&nbsp;</span><span class="normword">that</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic98 topic98_2675" style="color:#7870ff;">motive</span><span>&nbsp;</span><span class="topicword topic83 topic83_1804" style="color:#9480ff;">imputed</span><span>&nbsp;</span><span class="normword">to</span><span>&nbsp;</span><span class="topicword topic83 topic83_1813" style="color:#9480ff;">Billy</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="topicword topic83 topic83_1806" style="color:#9480ff;">spilling</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic83 topic83_1807" style="color:#9480ff;">soup</span><span>&nbsp;</span><span class="normword">just</span><span>&nbsp;</span><span class="normword">when</span><span>&nbsp;</span><span class="normword">he</span><span>&nbsp;</span><span class="normword">did,</span><span>&nbsp;</span><span class="normword">together</span><span>&nbsp;</span><span class="normword">with</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic83 topic83_1808" style="color:#9480ff;">epithets</span><span>&nbsp;</span><span class="topicword topic33 topic33_1788" style="color:#b8ff48;">alleged,</span><span>&nbsp;</span><span class="normword">these,</span><span>&nbsp;</span><span class="normword">if</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">nothing</span><span>&nbsp;</span><span class="normword">more,</span><span>&nbsp;</span><span class="topicword topic55 topic55_1323" style="color:#e89cff;">made</span><span>&nbsp;</span><span class="normword">a</span><span>&nbsp;</span><span class="topicword topic98 topic98_2676" style="color:#7870ff;">strong</span><span>&nbsp;</span><span class="topicword topic37 topic37_1331" style="color:#ff4054;">case</span><span>&nbsp;</span><span class="normword">against</span><span>&nbsp;</span><span class="normword">him;</span><span>&nbsp;</span><span class="topicword topic37 topic37_1332" style="color:#ff4054;">nay,</span><span>&nbsp;</span><span class="topicword topic2 topic2_1159" style="color:#d840c0;">justified</span><span>&nbsp;</span><span class="topicword topic83 topic83_1809" style="color:#9480ff;">animosity</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">into</span><span>&nbsp;</span><span class="normword">a</span><span>&nbsp;</span><span class="topicword topic55 topic55_1324" style="color:#e89cff;">sort</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="topicword topic55 topic55_1325" style="color:#e89cff;">retributive</span><span>&nbsp;</span><span class="topicword topic55 topic55_1326" style="color:#e89cff;">righteousness.</span><span>&nbsp;</span><span class="normword">The</span><span>&nbsp;</span><span class="topicword topic98 topic98_2677" style="color:#7870ff;">Pharisee</span><span>&nbsp;</span><span class="normword">is</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic37 topic37_1333" style="color:#ff4054;">Guy</span><span>&nbsp;</span><span class="topicword topic20 topic20_1186" style="color:#c4ff70;">Fawkes</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic2 topic2_1160" style="color:#d840c0;">prowling</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic2 topic2_1161" style="color:#d840c0;">hid</span><span>&nbsp;</span><span class="topicword topic2 topic2_1162" style="color:#d840c0;">chambers</span><span>&nbsp;</span><span class="topicword topic20 topic20_1187" style="color:#c4ff70;">underlying</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic37 topic37_1334" style="color:#ff4054;">Claggarts.</span><span>&nbsp;</span><span class="normword">And</span><span>&nbsp;</span><span class="normword">they</span><span>&nbsp;</span><span class="normword">can</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">really</span><span>&nbsp;</span><span class="topicword topic55 topic55_1327" style="color:#e89cff;">form</span><span>&nbsp;</span><span class="normword">no</span><span>&nbsp;</span><span class="topicword topic2 topic2_1163" style="color:#d840c0;">conception</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="normword">an</span><span>&nbsp;</span><span class="topicword topic37 topic37_1335" style="color:#ff4054;">unreciprocated</span><span>&nbsp;</span><span class="topicword topic83 topic83_1810" style="color:#9480ff;">malice.</span><span>&nbsp;</span><span class="normword">Probably,</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic83 topic83_1811" style="color:#9480ff;">Master-at-arms'</span><span>&nbsp;</span><span class="topicword topic83 topic83_1812" style="color:#9480ff;">clandestine</span><span>&nbsp;</span><span class="topicword topic37 topic37_1336" style="color:#ff4054;">persecution</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="topicword topic83 topic83_1813" style="color:#9480ff;">Billy</span><span>&nbsp;</span><span class="normword">was</span><span>&nbsp;</span><span class="topicword topic55 topic55_1328" style="color:#e89cff;">started</span><span>&nbsp;</span><span class="normword">to</span><span>&nbsp;</span><span class="normword">try</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic83 topic83_1814" style="color:#9480ff;">temper</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic98 topic98_2678" style="color:#7870ff;">man;</span><span>&nbsp;</span><span class="normword">but</span><span>&nbsp;</span><span class="normword">it</span><span>&nbsp;</span><span class="normword">had</span><span>&nbsp;</span><span class="normword">not</span><span>&nbsp;</span><span class="topicword topic83 topic83_1815" style="color:#9480ff;">developed</span><span>&nbsp;</span><span class="normword">any</span><span>&nbsp;</span><span class="topicword topic83 topic83_1816" style="color:#9480ff;">quality</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="normword">him</span><span>&nbsp;</span><span class="normword">that</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic98 topic98_2679" style="color:#7870ff;">enmity</span><span>&nbsp;</span><span class="normword">could</span><span>&nbsp;</span><span class="topicword topic98 topic98_2680" style="color:#7870ff;">make</span><span>&nbsp;</span><span class="topicword topic83 topic83_1817" style="color:#9480ff;">official</span><span>&nbsp;</span><span class="normword">use</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="normword">or</span><span>&nbsp;</span><span class="normword">even</span><span>&nbsp;</span><span class="topicword topic2 topic2_1164" style="color:#d840c0;">pervert</span><span>&nbsp;</span><span class="normword">into</span><span>&nbsp;</span><span class="topicword topic2 topic2_1165" style="color:#d840c0;">plausible</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic55 topic55_1329" style="color:#e89cff;">self-justification;</span><span>&nbsp;</span><span class="normword">so</span><span>&nbsp;</span><span class="normword">that</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic98 topic98_2681" style="color:#7870ff;">occurrence</span><span>&nbsp;</span><span class="normword">at</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic83 topic83_1818" style="color:#9480ff;">mess,</span><span>&nbsp;</span><span class="topicword topic83 topic83_1819" style="color:#9480ff;">petty</span><span>&nbsp;</span><span class="normword">if</span><span>&nbsp;</span><span class="normword">it</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">were,</span><span>&nbsp;</span><span class="normword">was</span><span>&nbsp;</span><span class="normword">a</span><span>&nbsp;</span><span class="normword">welcome</span><span>&nbsp;</span><span class="normword">one</span><span>&nbsp;</span><span class="normword">to</span><span>&nbsp;</span><span class="normword">that</span><span>&nbsp;</span><span class="topicword topic98 topic98_2682" style="color:#7870ff;">peculiar</span><span>&nbsp;</span><span class="topicword topic98 topic98_2683" style="color:#7870ff;">conscience</span><span>&nbsp;</span><span class="topicword topic83 topic83_1820" style="color:#9480ff;">assigned</span><span>&nbsp;</span><span class="normword">to</span><span>&nbsp;</span><span class="normword">be</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic98 topic98_2684" style="color:#7870ff;">private</span><span>&nbsp;</span><span class="topicword topic55 topic55_1330" style="color:#e89cff;">mentor</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="topicword topic83 topic83_1821" style="color:#9480ff;">Claggart.</span><span>&nbsp;</span><span class="normword">And,</span><span>&nbsp;</span><span class="normword">for</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic98 topic98_2685" style="color:#7870ff;">rest,</span><span>&nbsp;</span><span class="normword">not</span><span>&nbsp;</span><span class="topicword topic55 topic55_1331" style="color:#e89cff;">improbably</span><span>&nbsp;</span><span class="normword">it</span><span>&nbsp;</span><span class="topicword topic33 topic33_1789" style="color:#b8ff48;">put</span><span>&nbsp;</span><span class="normword">him</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">upon</span><span>&nbsp;</span><span class="normword">new</span><span>&nbsp;</span><span class="topicword topic98 topic98_2686" style="color:#7870ff;">experiments.</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword"></span><span>&nbsp;</span></p><br/>
+				</div>
+				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 wordweightcolumn">
+					<p><span class="normword">Composite Rank. (doc topic rank, topic word rank)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1813" style="color:#9480ff">1. billy (1, 1)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1813" style="color:#9480ff">1. billy (1, 1)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1323" style="color:#e89cff">2. made (3, 1)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1323" style="color:#e89cff">2. made (3, 1)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1821" style="color:#9480ff">3. claggart (1, 5)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1811" style="color:#9480ff">4. master-at-arms (1, 7)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2678" style="color:#7870ff">5. man (2, 3)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1803" style="color:#9480ff">6. claggart's (1, 11)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1803" style="color:#9480ff">6. claggart's (1, 11)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1327" style="color:#e89cff">7. form (3, 5)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2682" style="color:#7870ff">8. peculiar (2, 7)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1820" style="color:#9480ff">9. assigned (1, 25)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1817" style="color:#9480ff">10. official (1, 30)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1328" style="color:#e89cff">11. started (3, 8)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1801" style="color:#9480ff">12. unlike (1, 42)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2675" style="color:#7870ff">13. motive (2, 24)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1324" style="color:#e89cff">14. sort (3, 12)</span></p><br/>
+					<p><span class="topicword topic37 topic37_1331" style="color:#ff4054">15. case (6, 5)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1802" style="color:#9480ff">16. intelligence (1, 63)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1814" style="color:#9480ff">17. temper (1, 70)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2680" style="color:#7870ff">18. make (2, 32)</span></p><br/>
+					<p><span class="topicword topic33 topic33_1789" style="color:#b8ff48">19. put (5, 4)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1818" style="color:#9480ff">20. mess (1, 84)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1816" style="color:#9480ff">21. quality (1, 93)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1790" style="color:#9480ff">22. suspected (1, 79)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1789" style="color:#9480ff">23. hide (1, 80)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2684" style="color:#7870ff">24. private (2, 47)</span></p><br/>
+					<p><span class="topicword topic33 topic33_1782" style="color:#b8ff48">25. case (5, 10)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2685" style="color:#7870ff">26. rest (2, 54)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2683" style="color:#7870ff">27. conscience (2, 52)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2683" style="color:#7870ff">27. conscience (2, 52)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2683" style="color:#7870ff">27. conscience (2, 52)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1815" style="color:#9480ff">28. developed (1, 101)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2676" style="color:#7870ff">29. strong (2, 60)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2667" style="color:#7870ff">30. voluntarily (2, 71)</span></p><br/>
+					<p><span class="topicword topic33 topic33_1783" style="color:#b8ff48">31. action (5, 21)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1819" style="color:#9480ff">32. petty (1, 142)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1810" style="color:#9480ff">33. malice (1, 134)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1807" style="color:#9480ff">34. soup (1, 151)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1804" style="color:#9480ff">35. imputed (1, 131)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1794" style="color:#9480ff">36. apt (1, 135)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1788" style="color:#9480ff">37. subtler (1, 152)</span></p><br/>
+					<p><span class="topicword topic37 topic37_1332" style="color:#ff4054">38. nay (6, 27)</span></p><br/>
+					<p><span class="topicword topic2 topic2_1156" style="color:#d840c0">39. depravity (4, 27)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1808" style="color:#9480ff">40. epithets (1, 172)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1806" style="color:#9480ff">41. spilling (1, 189)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1797" style="color:#9480ff">42. offence (1, 155)</span></p><br/>
+					<p><span class="topicword topic37 topic37_1329" style="color:#ff4054">43. lawyer (6, 34)</span></p><br/>
+					<p><span class="topicword topic2 topic2_1162" style="color:#d840c0">44. chambers (4, 55)</span></p><br/>
+					<p><span class="topicword topic33 topic33_1788" style="color:#b8ff48">45. alleged (5, 67)</span></p><br/>
+					<p><span class="topicword topic33 topic33_1785" style="color:#b8ff48">46. aught (5, 78)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1796" style="color:#9480ff">47. supposed (1, 279)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1791" style="color:#9480ff">48. enlightenment (1, 263)</span></p><br/>
+					<p><span class="topicword topic2 topic2_1159" style="color:#d840c0">49. justified (4, 77)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2674" style="color:#7870ff">50. arguing (2, 173)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2670" style="color:#7870ff">51. inordinate (2, 177)</span></p><br/>
+					<p><span class="topicword topic2 topic2_1161" style="color:#d840c0">52. hid (4, 141)</span></p><br/>
+					<p><span class="topicword topic2 topic2_1157" style="color:#d840c0">53. injury (4, 110)</span></p><br/>
+					<p><span class="topicword topic37 topic37_1330" style="color:#ff4054">54. trifles (6, 97)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2669" style="color:#7870ff">55. certainty (2, 214)</span></p><br/>
+					<p><span class="topicword topic33 topic33_1784" style="color:#b8ff48">56. surmise (5, 127)</span></p><br/>
+					<p><span class="topicword topic20 topic20_1185" style="color:#c4ff70">57. devils (7, 57)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1326" style="color:#e89cff">58. righteousness (3, 146)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1812" style="color:#9480ff">59. clandestine (1, 504)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1809" style="color:#9480ff">60. animosity (1, 538)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1800" style="color:#9480ff">61. consciences (1, 319)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1798" style="color:#9480ff">62. exactions (1, 555)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1795" style="color:#9480ff">63. disproportion (1, 436)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1793" style="color:#9480ff">64. retaliation (1, 335)</span></p><br/>
+					<p><span class="topicword topic83 topic83_1792" style="color:#9480ff">65. unreluctantly (1, 372)</span></p><br/>
+					<p><span class="topicword topic33 topic33_1781" style="color:#b8ff48">66. prudence (5, 192)</span></p><br/>
+					<p><span class="topicword topic2 topic2_1163" style="color:#d840c0">67. conception (4, 204)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2686" style="color:#7870ff">68. experiments (2, 308)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2681" style="color:#7870ff">69. occurrence (2, 307)</span></p><br/>
+					<p><span class="topicword topic37 topic37_1336" style="color:#ff4054">70. persecution (6, 183)</span></p><br/>
+					<p><span class="topicword topic33 topic33_1787" style="color:#b8ff48">71. scriptural (5, 254)</span></p><br/>
+					<p><span class="topicword topic33 topic33_1780" style="color:#b8ff48">72. uncommon (5, 283)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1331" style="color:#e89cff">73. improbably (3, 264)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1330" style="color:#e89cff">74. mentor (3, 364)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1329" style="color:#e89cff">75. self-justification (3, 389)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1325" style="color:#e89cff">76. retributive (3, 387)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1321" style="color:#e89cff">77. foreheads (3, 215)</span></p><br/>
+					<p><span class="topicword topic55 topic55_1320" style="color:#e89cff">78. disillusion (3, 339)</span></p><br/>
+					<p><span class="topicword topic2 topic2_1165" style="color:#d840c0">79. plausible (4, 440)</span></p><br/>
+					<p><span class="topicword topic2 topic2_1164" style="color:#d840c0">80. pervert (4, 342)</span></p><br/>
+					<p><span class="topicword topic2 topic2_1160" style="color:#d840c0">81. prowling (4, 232)</span></p><br/>
+					<p><span class="topicword topic2 topic2_1158" style="color:#d840c0">82. ogres (4, 267)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2679" style="color:#7870ff">83. enmity (2, 536)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2677" style="color:#7870ff">84. pharisee (2, 366)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2672" style="color:#7870ff">85. tremble (2, 377)</span></p><br/>
+					<p><span class="topicword topic98 topic98_2668" style="color:#7870ff">86. cuts (2, 470)</span></p><br/>
+					<p><span class="topicword topic90 topic90_1543" style="color:#cc4870">87. revenge (8, 87)</span></p><br/>
+					<p><span class="topicword topic54 topic54_1540" style="color:#e428ff">88. monstrous (10, 37)</span></p><br/>
+					<p><span class="topicword topic37 topic37_1335" style="color:#ff4054">89. unreciprocated (6, 384)</span></p><br/>
+					<p><span class="topicword topic37 topic37_1334" style="color:#ff4054">90. claggarts (6, 469)</span></p><br/>
+					<p><span class="topicword topic37 topic37_1333" style="color:#ff4054">91. guy (6, 264)</span></p><br/>
+					<p><span class="topicword topic33 topic33_1786" style="color:#b8ff48">92. usurer (5, 386)</span></p><br/>
+					<p><span class="topicword topic1 topic1_836" style="color:#fff0be">93. habitual (9, 70)</span></p><br/>
+					<p><span class="topicword topic20 topic20_1187" style="color:#c4ff70">94. underlying (7, 347)</span></p><br/>
+					<p><span class="topicword topic20 topic20_1186" style="color:#c4ff70">95. fawkes (7, 255)</span></p><br/>
+					<p><span class="topicword topic20 topic20_1184" style="color:#c4ff70">96. secretiveness (7, 265)</span></p><br/>
+					<p><span class="topicword topic90 topic90_1544" style="color:#cc4870">97. excluding (8, 187)</span></p><br/>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class"container-fluid">
+				<div class="row">
+					<p><span class="topicword topicwordlist">Topic Word List</span></p><br/>
+				</div>
+				<div class="row meta_row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<p><span class="normword meta_label">Word:&nbsp;</span><span class="meta_topicword"></span></p><br/>
+					</div>					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+						<p><span class="normword meta_label">Composite Rank:&nbsp;</span><span class="topicword compositerank"></span></p><br/>
+						<p><span class="normword meta_label">Document-Topic Rank:&nbsp;</span><span class="topicword doctopicrank"></span></p><br/>
+						<p><span class="normword meta_label">Topic-Word Rank:&nbsp;</span><span class="topicword topicwordrank"></span></p><br/>
+					</div>
+				</div>
+				<p><span class="invisible_topicwordlist topic0">Topic 0: sweet, heart, love, good, heaven, poor, girl, angel, dead, strange, fair, lucy, cheek, heavenly, cried, thing, law, isabel, soul, leave</span></p>
+				<p><span class="invisible_topicwordlist topic1">Topic 1: morning, standing, hand, to-day, work, finger, suppose, falling, putting, stage, merry, hints, christmas, moved, keen, passed, vishnoo, nature, order, handed</span></p>
+				<p><span class="invisible_topicwordlist topic2">Topic 2: time, turkey, nippers, made, ginger, place, business, o'clock, afternoon, man, short, step, making, awhile, nut, dinner, coming, meet, steps, long</span></p>
+				<p><span class="invisible_topicwordlist topic3">Topic 3: good, table, dates, put, room, till, called, hear, began, hands, back, case, fellow, writing, bed, left, fine, dinner, floor, handkerchief</span></p>
+				<p><span class="invisible_topicwordlist topic4">Topic 4: long, side, stood, stone, ship's, moment, hull, hanging, terror, ere, pequod's, feet, lips, devil, bulwarks, try-works, lantern, lighted, decks, cutting</span></p>
+				<p><span class="invisible_topicwordlist topic5">Topic 5: great, lord, sort, leviathan, master, grand, late, deep, matter, remains, young, times, john, touching, indispensable, entitled, character, mariners, lights, happened</span></p>
+				<p><span class="invisible_topicwordlist topic6">Topic 6: years, ago, world, day, american, ships, long, make, whaling, whale-ship, land, england, thousand, water, foolish, port, home, terrors, ground, voyage</span></p>
+				<p><span class="invisible_topicwordlist topic7">Topic 7: night, thought, light, white, nay, days, sat, eat, hours, scarce, hot, morning, brow, middle, head, coach, snow, stars, added, watching</span></p>
+				<p><span class="invisible_topicwordlist topic8">Topic 8: god, jonah, truth, shipmates, pity, holy, made, fear, hold, key, remember, lesson, bless, sin, jonah's, lord, good-bye, bible, cries, light</span></p>
+				<p><span class="invisible_topicwordlist topic9">Topic 9: sea, sight, waves, air, ship, slowly, sound, rolled, beneath, lay, seas, vast, side, mild, ahab's, madness, sails, waters, feet, long</span></p>
+				<p><span class="invisible_topicwordlist topic10">Topic 10: pierre, isabel, lucy, things, felt, soul, mother, mind, life, feel, sweet, slightest, wholly, brought, grief, love, fate, strange, final, mother's</span></p>
+				<p><span class="invisible_topicwordlist topic11">Topic 11: ship, ahab, captain, boat, pequod, sea, time, till, crew, deck, boat's, forward, day, suddenly, stood, stern, fell, standing, water, remained</span></p>
+				<p><span class="invisible_topicwordlist topic12">Topic 12: green, sad, dark, gloom, living, winding, sadness, melancholy, unknown, ah, tree, grief, earth, fair, real, feeling, deeper, led, grim, vain</span></p>
+				<p><span class="invisible_topicwordlist topic13">Topic 13: hold, fool, ay, clear, ha, turn, quit, feel, step, called, bread, flying, drink, muttered, leaving, strike, blind, bursting, hearts, weary</span></p>
+				<p><span class="invisible_topicwordlist topic14">Topic 14: man, boy, sleep, friend, thing, things, pass, fixed, fine, follow, wake, blow, kind, question, suppose, wine, yonder, told, generally, friends</span></p>
+				<p><span class="invisible_topicwordlist topic15">Topic 15: bartleby, office, man, morning, written, great, sort, day, position, word, scrivener, pale, peculiar, desk, appeared, reference, prove, thought, report, call</span></p>
+				<p><span class="invisible_topicwordlist topic16">Topic 16: men, love, earth, god, things, mortal, lies, forty, day, immortal, lie, high, beneath, made, green, stand, joy, hearts, fire, eyes</span></p>
+				<p><span class="invisible_topicwordlist topic17">Topic 17: french, fight, harpooneer, red, rest, battle, book, day, repeated, stand, bottom, fleet, run, guernsey-man, carried, rose, giving, wounded, brought, perceived</span></p>
+				<p><span class="invisible_topicwordlist topic18">Topic 18: answer, lay, question, stood, coat, sat, pen, hand, ink, hands, part, hamlet, left, feet, previous, found, sheet, addressing, drawing, threw</span></p>
+				<p><span class="invisible_topicwordlist topic19">Topic 19: ship, end, head, hands, long, aloft, water, hold, iron, rope, body, lower, till, high, place, line, rigging, sharp, dead, sight</span></p>
+				<p><span class="invisible_topicwordlist topic20">Topic 20: white, wild, great, thousand, condition, hue, show, thousands, creature, ways, times, mountains, plainly, faint, gliding, gain, phantoms, herds, sweep, past</span></p>
+				<p><span class="invisible_topicwordlist topic21">Topic 21: small, present, general, men, altogether, manner, english, full, sort, genius, charles, degree, received, seldom, ambition, books, spirit, respect, apt, productions</span></p>
+				<p><span class="invisible_topicwordlist topic22">Topic 22: poor, pip, queequeg, fire, fellow, slowly, half, negro, arm, lay, made, died, hands, run, game, caught, lifted, alive, jumped, tambourine</span></p>
+				<p><span class="invisible_topicwordlist topic23">Topic 23: whale, sperm, fishery, species, body, greenland, english, famous, whalemen, fish, leviathan, bones, found, whaling, fishermen, seas, coast, reason, monster, hunters</span></p>
+				<p><span class="invisible_topicwordlist topic24">Topic 24: hat, water, long, standing, lay, hundred, heads, wall, heart, thought, lecture, entered, visit, large, elijah, venerable, south, wet, back, slouched</span></p>
+				<p><span class="invisible_topicwordlist topic25">Topic 25: whales, great, eyes, part, order, don, battle, circle, present, elephant, subject, lake, system, volume, sailor, baleen, leviathan, trunk, creatures, pequod's</span></p>
+				<p><span class="invisible_topicwordlist topic26">Topic 26: queequeg, bed, pipe, times, smoking, turned, priest, vessel, felt, day, matter, seat, foot, leaning, legs, tiller, tomahawk, ten, touched, keeping</span></p>
+				<p><span class="invisible_topicwordlist topic27">Topic 27: people, house, made, place, leave, quiet, poor, spoke, understand, country, miss, present, gave, told, village, left, young, mansion, cottage, find</span></p>
+				<p><span class="invisible_topicwordlist topic28">Topic 28: hand, light, holding, made, heavy, chest, blood, broken, face, regular, back, bit, fleece, candle, held, pulpit, blow, tongs, black, close</span></p>
+				<p><span class="invisible_topicwordlist topic29">Topic 29: present, free, account, sword, drop, ten, find, plinlimmon, plotinus, standing, hundred, millthorpe, walls, warp, dull, thousand, declare, shoulder, spout, dollars</span></p>
+				<p><span class="invisible_topicwordlist topic30">Topic 30: thing, isabel, thought, mystery, light, mind, memory, secret, common, soul, ground, likewise, objects, impossible, find, truth, dark, isabel's, living, sacred</span></p>
+				<p><span class="invisible_topicwordlist topic31">Topic 31: life, death, time, great, left, small, worse, single, put, making, drag, thrown, difference, sleeping, struck, strong, tied, space, earnestly, continually</span></p>
+				<p><span class="invisible_topicwordlist topic32">Topic 32: reason, men, mere, mad, fact, offer, heart, author, simply, subject, indifferent, vain, apparent, act, possibly, thing, calm, hate, vast, true</span></p>
+				<p><span class="invisible_topicwordlist topic33">Topic 33: general, law, act, mind, put, martial, occasion, mere, court, wholly, case, earnest, part, events, naval, nature, knowing, matter, effect, manner</span></p>
+				<p><span class="invisible_topicwordlist topic34">Topic 34: thought, moment, time, door, sudden, good, round, present, heard, word, stood, sight, high, turned, open, advanced, quickly, advance, deliberately, happened</span></p>
+				<p><span class="invisible_topicwordlist topic35">Topic 35: made, great, sea, began, sitting, moment, eating, low, cut, wild, directly, meat, butter, mixed, clam, cod, forms, supper, fat, fright</span></p>
+				<p><span class="invisible_topicwordlist topic36">Topic 36: pierre, time, face, manner, aspect, read, comprehend, general, fully, conceit, letter, singular, human, pamphlet, mystical, altogether, visible, profound, countenance, conscious</span></p>
+				<p><span class="invisible_topicwordlist topic37">Topic 37: bartleby, business, days, letters, case, answer, great, prefer, money, day, short, papers, altogether, hands, means, examine, bit, sudden, connected, future</span></p>
+				<p><span class="invisible_topicwordlist topic38">Topic 38: men, god, man, fine, years, unknown, time, black, short, hard, seldom, chance, number, mankind, hair, takes, bottom, year, season, command</span></p>
+				<p><span class="invisible_topicwordlist topic39">Topic 39: harpooneer, breakfast, room, morning, stairs, small, good, landlord, mrs, account, time, set, cold, night, make, quietly, duty, company, ere, careful</span></p>
+				<p><span class="invisible_topicwordlist topic40">Topic 40: thou, thee, thy, pierre, brother, isabel, art, hast, speak, feel, hath, god, heart, nay, dost, thine, sister, thyself, wilt, ah</span></p>
+				<p><span class="invisible_topicwordlist topic41">Topic 41: sea, ship, nantucket, land, long, ships, pequod, ocean, sail, great, pacific, masts, passage, sight, sailing, waters, island, whalemen, nigh, seamen</span></p>
+				<p><span class="invisible_topicwordlist topic42">Topic 42: things, strange, wholly, fear, degree, thing, small, idea, smile, made, man's, vague, soul, life, original, chief, mere, inferior, published, vanity</span></p>
+				<p><span class="invisible_topicwordlist topic43">Topic 43: men, silence, virtue, great, knew, left, evil, charge, eternal, freely, wild, ball, created, turn, make, invisible, give, mark, practicable, hit</span></p>
+				<p><span class="invisible_topicwordlist topic44">Topic 44: father, portrait, aunt, cousin, picture, strange, ralph, thing, child, painting, dear, father's, painted, story, hung, likeness, times, young, cash, paint</span></p>
+				<p><span class="invisible_topicwordlist topic45">Topic 45: ahab, ye, captain, aye, peleg, bildad, cried, man, starbuck, whale, men, dick, moby, white, ship, leg, cabin, good, stand, eye</span></p>
+				<p><span class="invisible_topicwordlist topic46">Topic 46: time, dead, possession, fast, fast-fish, seized, loose-fish, fish, set, previously, case, form, swam, party, thrown, judge, objection, buried, pretty, duke</span></p>
+				<p><span class="invisible_topicwordlist topic47">Topic 47: mouth, tongue, sharks, shark, killed, admit, a.d, spanish, hemp, nantucketer, dead, yonder, rope, language, kill, whiskers, nervous, talked, floating, wonderful</span></p>
+				<p><span class="invisible_topicwordlist topic48">Topic 48: ye, thou, thee, world, woe, tis, sweet, peace, make, sun, gods, glad, art, hell, yea, blacksmith, lad, murder, seeks, hint</span></p>
+				<p><span class="invisible_topicwordlist topic49">Topic 49: man, world, things, soul, time, truth, human, body, thing, true, god, wisdom, forever, general, mere, peculiar, folly, greenwich, china, earthly</span></p>
+				<p><span class="invisible_topicwordlist topic50">Topic 50: nature, sailor, made, power, life, young, view, handsome, sort, whiteness, america, kind, terrible, character, person, spirit, hereditary, strong, gentlemen, instances</span></p>
+				<p><span class="invisible_topicwordlist topic51">Topic 51: captain, vere, time, men, ship, officers, officer, sailor, lieutenant, ship's, watch, service, quarter-deck, duty, company, tho, story, man, crew, circumstances</span></p>
+				<p><span class="invisible_topicwordlist topic52">Topic 52: ye, it's, don't, he's, i'll, man, stubb, there's, that's, cook, what's, queer, em, won't, i've, leg, flask, ha, hear, sort</span></p>
+				<p><span class="invisible_topicwordlist topic53">Topic 53: found, vast, creature, history, remain, time, minute, gulf, ground, call, ambergris, blood, rocks, named, late, fifteen, representing, minds, hard, precise</span></p>
+				<p><span class="invisible_topicwordlist topic54">Topic 54: whaling, voyage, seas, gentlemen, vessels, found, set, originally, fact, times, people, business, pass, curious, history, hint, separate, queen, hold, state</span></p>
+				<p><span class="invisible_topicwordlist topic55">Topic 55: made, strange, hand, ill, form, sound, common, started, reply, face, close, sort, shriek, previous, meaning, continued, added, bidding, words, sewing</span></p>
+				<p><span class="invisible_topicwordlist topic56">Topic 56: called, mates, de, order, harpooneers, deck, dat, starboard, cabin, spare, turning, lances, dam, pale, driver, steward, den, broad, bellies, main</span></p>
+				<p><span class="invisible_topicwordlist topic57">Topic 57: boat, whale, boats, line, white, round, whale's, darted, chase, harpoon, instant, bows, sea, dick, cry, oars, wake, men, moby, distance</span></p>
+				<p><span class="invisible_topicwordlist topic58">Topic 58: face, strangely, days, countenance, looked, form, felt, gay, aspect, eye, strange, thing, weeks, remarkable, beheld, lad, composed, features, glass, ocean</span></p>
+				<p><span class="invisible_topicwordlist topic59">Topic 59: woman, human, sister, beautiful, life, mary, stranger, women, beauty, breast, gentleman, girls, called, maternal, faith, spoke, ran, occurred, began, stare</span></p>
+				<p><span class="invisible_topicwordlist topic60">Topic 60: stubb, ye, flask, that's, don't, cried, give, pull, start, devil, boys, easy, heard, word, men, sailor, starbuck, spring, em, there's</span></p>
+				<p><span class="invisible_topicwordlist topic61">Topic 61: sir, mr, good, falsgrave, madam, glendinning, replied, delly, carpenter, morning, clergyman, pray, pardon, cried, show, voice, person, gentleman, gentlemen, lady</span></p>
+				<p><span class="invisible_topicwordlist topic62">Topic 62: years, good, man, days, whales, true, carried, cape, ashore, marked, times, hope, instances, dangerous, period, temple, fitted, christian, prior, supposed</span></p>
+				<p><span class="invisible_topicwordlist topic63">Topic 63: part, small, lower, long, side, head, front, large, deck, teeth, bone, jaw, round, huge, forward, close, called, sides, free, glass</span></p>
+				<p><span class="invisible_topicwordlist topic64">Topic 64: hand, letter, fate, st, pride, moment, fly, stand, arms, thing, breath, delight, cried, dear, comfort, truth, pierre, joy, embrace, spirit</span></p>
+				<p><span class="invisible_topicwordlist topic65">Topic 65: street, church, chambers, city, apostles, lofty, hours, tower, ladies, social, order, cousin, purpose, coming, rooms, building, ancient, absence, eye, society</span></p>
+				<p><span class="invisible_topicwordlist topic66">Topic 66: pierre, father, mother, glendinning, son, child, father's, young, wife, family, youth, boy, brother, lady, pierre's, years, pride, children, fate, married</span></p>
+				<p><span class="invisible_topicwordlist topic67">Topic 67: eyes, body, back, hours, work, glance, motion, silence, quick, half, lines, eye, faces, hung, interval, turned, turn, stand, aspect, end</span></p>
+				<p><span class="invisible_topicwordlist topic68">Topic 68: ahab, eyes, crew, moment, starbuck, voice, eye, coming, instant, water, pointed, object, side, turns, low, deck, sea, bottom, steel, bent</span></p>
+				<p><span class="invisible_topicwordlist topic69">Topic 69: pierre, lucy, glen, mrs, glendinning, tartan, love, mother, sister, young, secret, girl, lucy's, dear, martha, pierre's, frederic, lady, thought, youthful</span></p>
+				<p><span class="invisible_topicwordlist topic70">Topic 70: life, things, feel, kings, noble, lost, fine, brain, man's, god, air, human, fresh, royal, majesty, names, crown, bear, innumerable, divine</span></p>
+				<p><span class="invisible_topicwordlist topic71">Topic 71: pierre, grand, cold, beneath, horse, horses, noble, steed, draw, lean, warm, hand, gray, inn, dog, proud, throw, man, sash, phaeton</span></p>
+				<p><span class="invisible_topicwordlist topic72">Topic 72: guitar, word, long, air, speak, gazing, words, heard, put, steady, murmured, day, spoken, spell, answered, other's, broken, time, responded, caught</span></p>
+				<p><span class="invisible_topicwordlist topic73">Topic 73: pierre, isabel, eyes, felt, suddenly, strange, arm, turned, thought, till, mind, paused, thoughts, looked, sat, face, act, wonderful, wholly, girl</span></p>
+				<p><span class="invisible_topicwordlist topic74">Topic 74: night, day, eyes, deck, till, silent, wind, hands, steelkilt, hour, fire, full, hard, sat, lakeman, knew, gentlemen, lamp, sought, closed</span></p>
+				<p><span class="invisible_topicwordlist topic75">Topic 75: book, whale, whales, chapter, dutch, long, sea, fish, voyage, work, porpoise, ii, folio, mast-head, bread, learned, iii, whaling, southern, octavo</span></p>
+				<p><span class="invisible_topicwordlist topic76">Topic 76: world, long, life, beauty, man, summer, heart, hath, love, young, light, wonderful, heaven, country, earth, pierre's, youth, form, wide, things</span></p>
+				<p><span class="invisible_topicwordlist topic77">Topic 77: coffin, door, town, gold, sailors, country, open, heads, dress, harpooneer, landlord, can't, answered, fresh, sign, run, sort, home, sake, mark</span></p>
+				<p><span class="invisible_topicwordlist topic78">Topic 78: house, bed, heard, passed, speak, place, round, time, lived, side, back, arms, windows, rest, held, returned, quick, day, window, foot</span></p>
+				<p><span class="invisible_topicwordlist topic79">Topic 79: whale, sperm, whales, great, time, full, long, hump, small, back, fifty, curious, precise, head, scientific, longer, points, fairly, living, spout</span></p>
+				<p><span class="invisible_topicwordlist topic80">Topic 80: world, death, humanity, equally, infinite, burn, thing, heart, utter, reveal, sin, evidence, cast, hour, future, sounds, dumb, misery, haughty, drawn</span></p>
+				<p><span class="invisible_topicwordlist topic81">Topic 81: mother, face, character, father, thought, singular, knew, precious, shrine, perfectly, shadows, chanced, holy, resolved, descended, plainly, finally, mother's, girl, honest</span></p>
+				<p><span class="invisible_topicwordlist topic82">Topic 82: man, sort, air, found, peculiar, thinking, intervals, term, entire, home, opening, pleasant, people, mood, rapidly, call, questions, put, passing, contrast</span></p>
+				<p><span class="invisible_topicwordlist topic83">Topic 83: billy, man, budd, young, claggart, foretopman, master-at-arms, sort, billy's, claggart's, expression, moral, matter, words, effect, fellow, voice, honor, tho, doubtless</span></p>
+				<p><span class="invisible_topicwordlist topic84">Topic 84: black, round, arm, looked, prefer, parts, empty, paid, gigantic, vague, figure, ears, hollow, removed, loudly, loose, huge, planted, paper, reply</span></p>
+				<p><span class="invisible_topicwordlist topic85">Topic 85: pierre, meadows, long, day, blue, morning, saddle, early, hills, eyes, evening, changed, woods, thoughts, general, drew, pure, end, river, golden</span></p>
+				<p><span class="invisible_topicwordlist topic86">Topic 86: sun, air, round, sky, calm, bright, sea, storm, tossed, mouth, heard, swift, flames, gold, turned, nigh, fro, noon, enchanted, soil</span></p>
+				<p><span class="invisible_topicwordlist topic87">Topic 87: queequeg, savage, harpoon, tashtego, head, daggoo, queequeg's, king, rest, wild, teeth, part, yojo, pagan, looked, days, native, lie, gave, island</span></p>
+				<p><span class="invisible_topicwordlist topic88">Topic 88: whale, head, feet, sperm, whale's, length, water, tail, side, surface, entire, point, air, ten, view, ribs, mouth, flukes, skull, broad</span></p>
+				<p><span class="invisible_topicwordlist topic89">Topic 89: board, years, ago, world, heard, home, knowledge, sign, word, true, received, signs, found, pay, make, wanting, crossing, degree, separately, seated</span></p>
+				<p><span class="invisible_topicwordlist topic90">Topic 90: soul, heart, dark, round, feel, world, touch, brow, souls, dead, woe, pale, feels, lead, soft, head, nameless, anguish, long, spiritual</span></p>
+				<p><span class="invisible_topicwordlist topic91">Topic 91: man, great, whale, thing, living, mighty, live, die, true, nose, leviathan, vast, waters, wherefore, combined, fish, lost, eternal, ages, death</span></p>
+				<p><span class="invisible_topicwordlist topic92">Topic 92: hand, man, end, cried, millthorpe, till, pole, light, work, deep, june, bucket, deeper, individual, caught, lost, hat, bring, porter, begin</span></p>
+				<p><span class="invisible_topicwordlist topic93">Topic 93: point, found, chance, possibly, doubt, find, thought, shock, part, city, entire, previous, case, made, mention, harpoons, plain, interval, follow, moment</span></p>
+				<p><span class="invisible_topicwordlist topic94">Topic 94: oil, touching, case, thing, considerable, bedford, foreign, casks, wonders, live, virtue, place, business, stuff, degree, quantity, state, blubber, rare, fine</span></p>
+				<p><span class="invisible_topicwordlist topic95">Topic 95: white, man, mate, life, crew, iron, whale, watch, heat, place, set, ivory, mast-heads, strange, squall, chief, steel, pipe, lungs, deck</span></p>
+				<p><span class="invisible_topicwordlist topic96">Topic 96: small, give, resolved, makes, reading, long, seamen, equal, continual, cross, yield, surprise, occasion, vain, bear, charity, philosophy, remain, seat, sit</span></p>
+				<p><span class="invisible_topicwordlist topic97">Topic 97: aye, man, starbuck, sir, wind, ahab, tis, make, full, poor, god, thinking, back, turn, play, instant, log, stubb, worse, beware</span></p>
+				<p><span class="invisible_topicwordlist topic98">Topic 98: thing, present, man, circumstances, time, matter, peculiar, natural, life, point, part, knew, mind, thought, general, touching, person, contact, personal, common</span></p>
+				<p><span class="invisible_topicwordlist topic99">Topic 99: pierre, room, isabel, hand, door, chamber, delly, entered, window, floor, silent, sat, moment, chair, pierre's, met, voice, corner, open, passed</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1813">billy</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1813">1</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1813">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1813">1</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1813">billy</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1813">1</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1813">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1813">1</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1323">made</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1323">2</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1323">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1323">1</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1323">made</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1323">2</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1323">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1323">1</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1821">claggart</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1821">3</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1821">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1821">5</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1811">master-at-arms</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1811">4</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1811">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1811">7</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2678">man</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2678">5</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2678">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2678">3</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1803">claggart's</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1803">6</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1803">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1803">11</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1803">claggart's</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1803">6</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1803">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1803">11</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1327">form</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1327">7</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1327">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1327">5</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2682">peculiar</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2682">8</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2682">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2682">7</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1820">assigned</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1820">9</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1820">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1820">25</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1817">official</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1817">10</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1817">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1817">30</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1328">started</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1328">11</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1328">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1328">8</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1801">unlike</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1801">12</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1801">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1801">42</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2675">motive</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2675">13</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2675">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2675">24</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1324">sort</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1324">14</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1324">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1324">12</span></p>
+				<p><span class="invisible_topicword topic37 topic37_1331">case</span></p>
+				<p><span class="invisible_compositerank topic37 topic37_1331">15</span></p>
+				<p><span class="invisible_doctopicrank topic37 topic37_1331">6</span></p>
+				<p><span class="invisible_topicwordrank topic37 topic37_1331">5</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1802">intelligence</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1802">16</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1802">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1802">63</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1814">temper</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1814">17</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1814">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1814">70</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2680">make</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2680">18</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2680">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2680">32</span></p>
+				<p><span class="invisible_topicword topic33 topic33_1789">put</span></p>
+				<p><span class="invisible_compositerank topic33 topic33_1789">19</span></p>
+				<p><span class="invisible_doctopicrank topic33 topic33_1789">5</span></p>
+				<p><span class="invisible_topicwordrank topic33 topic33_1789">4</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1818">mess</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1818">20</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1818">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1818">84</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1816">quality</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1816">21</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1816">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1816">93</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1790">suspected</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1790">22</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1790">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1790">79</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1789">hide</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1789">23</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1789">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1789">80</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2684">private</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2684">24</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2684">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2684">47</span></p>
+				<p><span class="invisible_topicword topic33 topic33_1782">case</span></p>
+				<p><span class="invisible_compositerank topic33 topic33_1782">25</span></p>
+				<p><span class="invisible_doctopicrank topic33 topic33_1782">5</span></p>
+				<p><span class="invisible_topicwordrank topic33 topic33_1782">10</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2685">rest</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2685">26</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2685">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2685">54</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2683">conscience</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2683">27</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2683">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2683">52</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2683">conscience</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2683">27</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2683">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2683">52</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2683">conscience</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2683">27</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2683">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2683">52</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1815">developed</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1815">28</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1815">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1815">101</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2676">strong</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2676">29</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2676">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2676">60</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2667">voluntarily</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2667">30</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2667">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2667">71</span></p>
+				<p><span class="invisible_topicword topic33 topic33_1783">action</span></p>
+				<p><span class="invisible_compositerank topic33 topic33_1783">31</span></p>
+				<p><span class="invisible_doctopicrank topic33 topic33_1783">5</span></p>
+				<p><span class="invisible_topicwordrank topic33 topic33_1783">21</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1819">petty</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1819">32</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1819">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1819">142</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1810">malice</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1810">33</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1810">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1810">134</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1807">soup</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1807">34</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1807">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1807">151</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1804">imputed</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1804">35</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1804">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1804">131</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1794">apt</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1794">36</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1794">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1794">135</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1788">subtler</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1788">37</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1788">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1788">152</span></p>
+				<p><span class="invisible_topicword topic37 topic37_1332">nay</span></p>
+				<p><span class="invisible_compositerank topic37 topic37_1332">38</span></p>
+				<p><span class="invisible_doctopicrank topic37 topic37_1332">6</span></p>
+				<p><span class="invisible_topicwordrank topic37 topic37_1332">27</span></p>
+				<p><span class="invisible_topicword topic2 topic2_1156">depravity</span></p>
+				<p><span class="invisible_compositerank topic2 topic2_1156">39</span></p>
+				<p><span class="invisible_doctopicrank topic2 topic2_1156">4</span></p>
+				<p><span class="invisible_topicwordrank topic2 topic2_1156">27</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1808">epithets</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1808">40</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1808">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1808">172</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1806">spilling</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1806">41</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1806">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1806">189</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1797">offence</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1797">42</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1797">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1797">155</span></p>
+				<p><span class="invisible_topicword topic37 topic37_1329">lawyer</span></p>
+				<p><span class="invisible_compositerank topic37 topic37_1329">43</span></p>
+				<p><span class="invisible_doctopicrank topic37 topic37_1329">6</span></p>
+				<p><span class="invisible_topicwordrank topic37 topic37_1329">34</span></p>
+				<p><span class="invisible_topicword topic2 topic2_1162">chambers</span></p>
+				<p><span class="invisible_compositerank topic2 topic2_1162">44</span></p>
+				<p><span class="invisible_doctopicrank topic2 topic2_1162">4</span></p>
+				<p><span class="invisible_topicwordrank topic2 topic2_1162">55</span></p>
+				<p><span class="invisible_topicword topic33 topic33_1788">alleged</span></p>
+				<p><span class="invisible_compositerank topic33 topic33_1788">45</span></p>
+				<p><span class="invisible_doctopicrank topic33 topic33_1788">5</span></p>
+				<p><span class="invisible_topicwordrank topic33 topic33_1788">67</span></p>
+				<p><span class="invisible_topicword topic33 topic33_1785">aught</span></p>
+				<p><span class="invisible_compositerank topic33 topic33_1785">46</span></p>
+				<p><span class="invisible_doctopicrank topic33 topic33_1785">5</span></p>
+				<p><span class="invisible_topicwordrank topic33 topic33_1785">78</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1796">supposed</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1796">47</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1796">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1796">279</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1791">enlightenment</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1791">48</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1791">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1791">263</span></p>
+				<p><span class="invisible_topicword topic2 topic2_1159">justified</span></p>
+				<p><span class="invisible_compositerank topic2 topic2_1159">49</span></p>
+				<p><span class="invisible_doctopicrank topic2 topic2_1159">4</span></p>
+				<p><span class="invisible_topicwordrank topic2 topic2_1159">77</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2674">arguing</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2674">50</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2674">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2674">173</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2670">inordinate</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2670">51</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2670">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2670">177</span></p>
+				<p><span class="invisible_topicword topic2 topic2_1161">hid</span></p>
+				<p><span class="invisible_compositerank topic2 topic2_1161">52</span></p>
+				<p><span class="invisible_doctopicrank topic2 topic2_1161">4</span></p>
+				<p><span class="invisible_topicwordrank topic2 topic2_1161">141</span></p>
+				<p><span class="invisible_topicword topic2 topic2_1157">injury</span></p>
+				<p><span class="invisible_compositerank topic2 topic2_1157">53</span></p>
+				<p><span class="invisible_doctopicrank topic2 topic2_1157">4</span></p>
+				<p><span class="invisible_topicwordrank topic2 topic2_1157">110</span></p>
+				<p><span class="invisible_topicword topic37 topic37_1330">trifles</span></p>
+				<p><span class="invisible_compositerank topic37 topic37_1330">54</span></p>
+				<p><span class="invisible_doctopicrank topic37 topic37_1330">6</span></p>
+				<p><span class="invisible_topicwordrank topic37 topic37_1330">97</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2669">certainty</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2669">55</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2669">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2669">214</span></p>
+				<p><span class="invisible_topicword topic33 topic33_1784">surmise</span></p>
+				<p><span class="invisible_compositerank topic33 topic33_1784">56</span></p>
+				<p><span class="invisible_doctopicrank topic33 topic33_1784">5</span></p>
+				<p><span class="invisible_topicwordrank topic33 topic33_1784">127</span></p>
+				<p><span class="invisible_topicword topic20 topic20_1185">devils</span></p>
+				<p><span class="invisible_compositerank topic20 topic20_1185">57</span></p>
+				<p><span class="invisible_doctopicrank topic20 topic20_1185">7</span></p>
+				<p><span class="invisible_topicwordrank topic20 topic20_1185">57</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1326">righteousness</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1326">58</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1326">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1326">146</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1812">clandestine</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1812">59</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1812">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1812">504</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1809">animosity</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1809">60</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1809">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1809">538</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1800">consciences</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1800">61</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1800">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1800">319</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1798">exactions</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1798">62</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1798">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1798">555</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1795">disproportion</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1795">63</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1795">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1795">436</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1793">retaliation</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1793">64</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1793">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1793">335</span></p>
+				<p><span class="invisible_topicword topic83 topic83_1792">unreluctantly</span></p>
+				<p><span class="invisible_compositerank topic83 topic83_1792">65</span></p>
+				<p><span class="invisible_doctopicrank topic83 topic83_1792">1</span></p>
+				<p><span class="invisible_topicwordrank topic83 topic83_1792">372</span></p>
+				<p><span class="invisible_topicword topic33 topic33_1781">prudence</span></p>
+				<p><span class="invisible_compositerank topic33 topic33_1781">66</span></p>
+				<p><span class="invisible_doctopicrank topic33 topic33_1781">5</span></p>
+				<p><span class="invisible_topicwordrank topic33 topic33_1781">192</span></p>
+				<p><span class="invisible_topicword topic2 topic2_1163">conception</span></p>
+				<p><span class="invisible_compositerank topic2 topic2_1163">67</span></p>
+				<p><span class="invisible_doctopicrank topic2 topic2_1163">4</span></p>
+				<p><span class="invisible_topicwordrank topic2 topic2_1163">204</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2686">experiments</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2686">68</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2686">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2686">308</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2681">occurrence</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2681">69</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2681">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2681">307</span></p>
+				<p><span class="invisible_topicword topic37 topic37_1336">persecution</span></p>
+				<p><span class="invisible_compositerank topic37 topic37_1336">70</span></p>
+				<p><span class="invisible_doctopicrank topic37 topic37_1336">6</span></p>
+				<p><span class="invisible_topicwordrank topic37 topic37_1336">183</span></p>
+				<p><span class="invisible_topicword topic33 topic33_1787">scriptural</span></p>
+				<p><span class="invisible_compositerank topic33 topic33_1787">71</span></p>
+				<p><span class="invisible_doctopicrank topic33 topic33_1787">5</span></p>
+				<p><span class="invisible_topicwordrank topic33 topic33_1787">254</span></p>
+				<p><span class="invisible_topicword topic33 topic33_1780">uncommon</span></p>
+				<p><span class="invisible_compositerank topic33 topic33_1780">72</span></p>
+				<p><span class="invisible_doctopicrank topic33 topic33_1780">5</span></p>
+				<p><span class="invisible_topicwordrank topic33 topic33_1780">283</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1331">improbably</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1331">73</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1331">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1331">264</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1330">mentor</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1330">74</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1330">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1330">364</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1329">self-justification</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1329">75</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1329">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1329">389</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1325">retributive</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1325">76</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1325">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1325">387</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1321">foreheads</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1321">77</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1321">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1321">215</span></p>
+				<p><span class="invisible_topicword topic55 topic55_1320">disillusion</span></p>
+				<p><span class="invisible_compositerank topic55 topic55_1320">78</span></p>
+				<p><span class="invisible_doctopicrank topic55 topic55_1320">3</span></p>
+				<p><span class="invisible_topicwordrank topic55 topic55_1320">339</span></p>
+				<p><span class="invisible_topicword topic2 topic2_1165">plausible</span></p>
+				<p><span class="invisible_compositerank topic2 topic2_1165">79</span></p>
+				<p><span class="invisible_doctopicrank topic2 topic2_1165">4</span></p>
+				<p><span class="invisible_topicwordrank topic2 topic2_1165">440</span></p>
+				<p><span class="invisible_topicword topic2 topic2_1164">pervert</span></p>
+				<p><span class="invisible_compositerank topic2 topic2_1164">80</span></p>
+				<p><span class="invisible_doctopicrank topic2 topic2_1164">4</span></p>
+				<p><span class="invisible_topicwordrank topic2 topic2_1164">342</span></p>
+				<p><span class="invisible_topicword topic2 topic2_1160">prowling</span></p>
+				<p><span class="invisible_compositerank topic2 topic2_1160">81</span></p>
+				<p><span class="invisible_doctopicrank topic2 topic2_1160">4</span></p>
+				<p><span class="invisible_topicwordrank topic2 topic2_1160">232</span></p>
+				<p><span class="invisible_topicword topic2 topic2_1158">ogres</span></p>
+				<p><span class="invisible_compositerank topic2 topic2_1158">82</span></p>
+				<p><span class="invisible_doctopicrank topic2 topic2_1158">4</span></p>
+				<p><span class="invisible_topicwordrank topic2 topic2_1158">267</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2679">enmity</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2679">83</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2679">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2679">536</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2677">pharisee</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2677">84</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2677">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2677">366</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2672">tremble</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2672">85</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2672">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2672">377</span></p>
+				<p><span class="invisible_topicword topic98 topic98_2668">cuts</span></p>
+				<p><span class="invisible_compositerank topic98 topic98_2668">86</span></p>
+				<p><span class="invisible_doctopicrank topic98 topic98_2668">2</span></p>
+				<p><span class="invisible_topicwordrank topic98 topic98_2668">470</span></p>
+				<p><span class="invisible_topicword topic90 topic90_1543">revenge</span></p>
+				<p><span class="invisible_compositerank topic90 topic90_1543">87</span></p>
+				<p><span class="invisible_doctopicrank topic90 topic90_1543">8</span></p>
+				<p><span class="invisible_topicwordrank topic90 topic90_1543">87</span></p>
+				<p><span class="invisible_topicword topic54 topic54_1540">monstrous</span></p>
+				<p><span class="invisible_compositerank topic54 topic54_1540">88</span></p>
+				<p><span class="invisible_doctopicrank topic54 topic54_1540">10</span></p>
+				<p><span class="invisible_topicwordrank topic54 topic54_1540">37</span></p>
+				<p><span class="invisible_topicword topic37 topic37_1335">unreciprocated</span></p>
+				<p><span class="invisible_compositerank topic37 topic37_1335">89</span></p>
+				<p><span class="invisible_doctopicrank topic37 topic37_1335">6</span></p>
+				<p><span class="invisible_topicwordrank topic37 topic37_1335">384</span></p>
+				<p><span class="invisible_topicword topic37 topic37_1334">claggarts</span></p>
+				<p><span class="invisible_compositerank topic37 topic37_1334">90</span></p>
+				<p><span class="invisible_doctopicrank topic37 topic37_1334">6</span></p>
+				<p><span class="invisible_topicwordrank topic37 topic37_1334">469</span></p>
+				<p><span class="invisible_topicword topic37 topic37_1333">guy</span></p>
+				<p><span class="invisible_compositerank topic37 topic37_1333">91</span></p>
+				<p><span class="invisible_doctopicrank topic37 topic37_1333">6</span></p>
+				<p><span class="invisible_topicwordrank topic37 topic37_1333">264</span></p>
+				<p><span class="invisible_topicword topic33 topic33_1786">usurer</span></p>
+				<p><span class="invisible_compositerank topic33 topic33_1786">92</span></p>
+				<p><span class="invisible_doctopicrank topic33 topic33_1786">5</span></p>
+				<p><span class="invisible_topicwordrank topic33 topic33_1786">386</span></p>
+				<p><span class="invisible_topicword topic1 topic1_836">habitual</span></p>
+				<p><span class="invisible_compositerank topic1 topic1_836">93</span></p>
+				<p><span class="invisible_doctopicrank topic1 topic1_836">9</span></p>
+				<p><span class="invisible_topicwordrank topic1 topic1_836">70</span></p>
+				<p><span class="invisible_topicword topic20 topic20_1187">underlying</span></p>
+				<p><span class="invisible_compositerank topic20 topic20_1187">94</span></p>
+				<p><span class="invisible_doctopicrank topic20 topic20_1187">7</span></p>
+				<p><span class="invisible_topicwordrank topic20 topic20_1187">347</span></p>
+				<p><span class="invisible_topicword topic20 topic20_1186">fawkes</span></p>
+				<p><span class="invisible_compositerank topic20 topic20_1186">95</span></p>
+				<p><span class="invisible_doctopicrank topic20 topic20_1186">7</span></p>
+				<p><span class="invisible_topicwordrank topic20 topic20_1186">255</span></p>
+				<p><span class="invisible_topicword topic20 topic20_1184">secretiveness</span></p>
+				<p><span class="invisible_compositerank topic20 topic20_1184">96</span></p>
+				<p><span class="invisible_doctopicrank topic20 topic20_1184">7</span></p>
+				<p><span class="invisible_topicwordrank topic20 topic20_1184">265</span></p>
+				<p><span class="invisible_topicword topic90 topic90_1544">excluding</span></p>
+				<p><span class="invisible_compositerank topic90 topic90_1544">97</span></p>
+				<p><span class="invisible_doctopicrank topic90 topic90_1544">8</span></p>
+				<p><span class="invisible_topicwordrank topic90 topic90_1544">187</span></p>
+			</div>
+		</footer>
+	</body>
+</html>

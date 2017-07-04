@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="twic_close_reading.css">
+		<script src="jquery-3.2.1.min.js"></script>
+		<script src="bootstrap.min.js"></script>
+		<script>
+			var topicColorTable = {};
+			
+			
+			function GetTopicIDClass(p_className){
+			
+			    var classList = p_className.split(/\s+/);
+			    return classList[1];
+			};
+			
+			function GetWordIDClass(p_className){
+			
+			    var classList = p_className.split(/\s+/);
+			    return classList[2];
+			};
+			
+			function TopicIDMatch(p_className1, p_className2){
+			    
+			    return GetTopicIDClass(p_className1) == GetTopicIDClass(p_className2);
+			};
+			
+			
+			function WordIDMatch(p_className1, p_className2){
+			    
+			    return GetWordIDClass(p_className1) == GetWordIDClass(p_className2);
+			};
+			
+			
+			function HoverEnter(){
+			
+			    var myClassName = this.className;
+			    var tagAndClass = this.tagName + "." + GetTopicIDClass(myClassName);
+			    var normBackground = $(this).css("color");
+			    var normColor = "dimgrey";
+			
+			    $(tagAndClass).each(function(){
+			        if ( WordIDMatch(myClassName, this.className) ) { 
+			            $(this).css({"background-color": "white", "color": "black"}); 
+			        } else {
+			            //$(this).css({"background-color": normBackground, "color": "white"});
+			            $(this).css({"background-color": "dimgrey", "color": "white"});
+			        }
+			    });
+			
+			    var topicIDClass = GetTopicIDClass(myClassName);
+			    var wordIDClass = GetWordIDClass(myClassName);
+			    $(".topicwordlist").text($(".invisible_topicwordlist." + topicIDClass).text());
+			    $(".topicwordlist").css({"color": topicColorTable[topicIDClass]});
+			    $(".meta_topicword").text($(".invisible_topicword." + topicIDClass + "." + wordIDClass).first().text());
+			    $(".meta_topicword").css({"color": topicColorTable[topicIDClass]});        
+			    $(".compositerank").text($(".invisible_compositerank." + topicIDClass + "." + wordIDClass).first().text());
+			    $(".compositerank").css({"color": topicColorTable[topicIDClass]});    
+			    $(".doctopicrank").text($(".invisible_doctopicrank." + topicIDClass + "." + wordIDClass).first().text());
+			    $(".doctopicrank").css({"color": topicColorTable[topicIDClass]});
+			    $(".topicwordrank").text($(".invisible_topicwordrank." + topicIDClass + "." + wordIDClass).first().text());
+			    $(".topicwordrank").css({"color": topicColorTable[topicIDClass]});    
+			};
+			
+			function HoverExit(){
+			
+			    var tagAndClass = this.tagName + "." + GetTopicIDClass(this.className);
+			    var bodyBackground = $("body").css("background-color");
+			
+			    $(tagAndClass).each(function(){
+			        $(tagAndClass).css({"background-color": bodyBackground,
+			                            "color": topicColorTable[GetTopicIDClass(this.className)]});
+			    });
+			};
+
+			$(function(){
+
+				$("span.topic24").hover(HoverEnter, HoverExit);
+				topicColorTable["topic24"] = $("span.topic24").css("color");
+				$("span.topic25").hover(HoverEnter, HoverExit);
+				topicColorTable["topic25"] = $("span.topic25").css("color");
+				$("span.topic26").hover(HoverEnter, HoverExit);
+				topicColorTable["topic26"] = $("span.topic26").css("color");
+				$("span.topic27").hover(HoverEnter, HoverExit);
+				topicColorTable["topic27"] = $("span.topic27").css("color");
+				$("span.topic20").hover(HoverEnter, HoverExit);
+				topicColorTable["topic20"] = $("span.topic20").css("color");
+				$("span.topic21").hover(HoverEnter, HoverExit);
+				topicColorTable["topic21"] = $("span.topic21").css("color");
+				$("span.topic22").hover(HoverEnter, HoverExit);
+				topicColorTable["topic22"] = $("span.topic22").css("color");
+				$("span.topic23").hover(HoverEnter, HoverExit);
+				topicColorTable["topic23"] = $("span.topic23").css("color");
+				$("span.topic28").hover(HoverEnter, HoverExit);
+				topicColorTable["topic28"] = $("span.topic28").css("color");
+				$("span.topic29").hover(HoverEnter, HoverExit);
+				topicColorTable["topic29"] = $("span.topic29").css("color");
+				$("span.topic0").hover(HoverEnter, HoverExit);
+				topicColorTable["topic0"] = $("span.topic0").css("color");
+				$("span.topic4").hover(HoverEnter, HoverExit);
+				topicColorTable["topic4"] = $("span.topic4").css("color");
+				$("span.topic8").hover(HoverEnter, HoverExit);
+				topicColorTable["topic8"] = $("span.topic8").css("color");
+				$("span.topic59").hover(HoverEnter, HoverExit);
+				topicColorTable["topic59"] = $("span.topic59").css("color");
+				$("span.topic58").hover(HoverEnter, HoverExit);
+				topicColorTable["topic58"] = $("span.topic58").css("color");
+				$("span.topic55").hover(HoverEnter, HoverExit);
+				topicColorTable["topic55"] = $("span.topic55").css("color");
+				$("span.topic54").hover(HoverEnter, HoverExit);
+				topicColorTable["topic54"] = $("span.topic54").css("color");
+				$("span.topic57").hover(HoverEnter, HoverExit);
+				topicColorTable["topic57"] = $("span.topic57").css("color");
+				$("span.topic56").hover(HoverEnter, HoverExit);
+				topicColorTable["topic56"] = $("span.topic56").css("color");
+				$("span.topic51").hover(HoverEnter, HoverExit);
+				topicColorTable["topic51"] = $("span.topic51").css("color");
+				$("span.topic50").hover(HoverEnter, HoverExit);
+				topicColorTable["topic50"] = $("span.topic50").css("color");
+				$("span.topic53").hover(HoverEnter, HoverExit);
+				topicColorTable["topic53"] = $("span.topic53").css("color");
+				$("span.topic52").hover(HoverEnter, HoverExit);
+				topicColorTable["topic52"] = $("span.topic52").css("color");
+				$("span.topic88").hover(HoverEnter, HoverExit);
+				topicColorTable["topic88"] = $("span.topic88").css("color");
+				$("span.topic89").hover(HoverEnter, HoverExit);
+				topicColorTable["topic89"] = $("span.topic89").css("color");
+				$("span.topic82").hover(HoverEnter, HoverExit);
+				topicColorTable["topic82"] = $("span.topic82").css("color");
+				$("span.topic83").hover(HoverEnter, HoverExit);
+				topicColorTable["topic83"] = $("span.topic83").css("color");
+				$("span.topic80").hover(HoverEnter, HoverExit);
+				topicColorTable["topic80"] = $("span.topic80").css("color");
+				$("span.topic81").hover(HoverEnter, HoverExit);
+				topicColorTable["topic81"] = $("span.topic81").css("color");
+				$("span.topic86").hover(HoverEnter, HoverExit);
+				topicColorTable["topic86"] = $("span.topic86").css("color");
+				$("span.topic87").hover(HoverEnter, HoverExit);
+				topicColorTable["topic87"] = $("span.topic87").css("color");
+				$("span.topic84").hover(HoverEnter, HoverExit);
+				topicColorTable["topic84"] = $("span.topic84").css("color");
+				$("span.topic85").hover(HoverEnter, HoverExit);
+				topicColorTable["topic85"] = $("span.topic85").css("color");
+				$("span.topic3").hover(HoverEnter, HoverExit);
+				topicColorTable["topic3"] = $("span.topic3").css("color");
+				$("span.topic7").hover(HoverEnter, HoverExit);
+				topicColorTable["topic7"] = $("span.topic7").css("color");
+				$("span.topic39").hover(HoverEnter, HoverExit);
+				topicColorTable["topic39"] = $("span.topic39").css("color");
+				$("span.topic38").hover(HoverEnter, HoverExit);
+				topicColorTable["topic38"] = $("span.topic38").css("color");
+				$("span.topic33").hover(HoverEnter, HoverExit);
+				topicColorTable["topic33"] = $("span.topic33").css("color");
+				$("span.topic32").hover(HoverEnter, HoverExit);
+				topicColorTable["topic32"] = $("span.topic32").css("color");
+				$("span.topic31").hover(HoverEnter, HoverExit);
+				topicColorTable["topic31"] = $("span.topic31").css("color");
+				$("span.topic30").hover(HoverEnter, HoverExit);
+				topicColorTable["topic30"] = $("span.topic30").css("color");
+				$("span.topic37").hover(HoverEnter, HoverExit);
+				topicColorTable["topic37"] = $("span.topic37").css("color");
+				$("span.topic36").hover(HoverEnter, HoverExit);
+				topicColorTable["topic36"] = $("span.topic36").css("color");
+				$("span.topic35").hover(HoverEnter, HoverExit);
+				topicColorTable["topic35"] = $("span.topic35").css("color");
+				$("span.topic34").hover(HoverEnter, HoverExit);
+				topicColorTable["topic34"] = $("span.topic34").css("color");
+				$("span.topic60").hover(HoverEnter, HoverExit);
+				topicColorTable["topic60"] = $("span.topic60").css("color");
+				$("span.topic61").hover(HoverEnter, HoverExit);
+				topicColorTable["topic61"] = $("span.topic61").css("color");
+				$("span.topic62").hover(HoverEnter, HoverExit);
+				topicColorTable["topic62"] = $("span.topic62").css("color");
+				$("span.topic63").hover(HoverEnter, HoverExit);
+				topicColorTable["topic63"] = $("span.topic63").css("color");
+				$("span.topic64").hover(HoverEnter, HoverExit);
+				topicColorTable["topic64"] = $("span.topic64").css("color");
+				$("span.topic65").hover(HoverEnter, HoverExit);
+				topicColorTable["topic65"] = $("span.topic65").css("color");
+				$("span.topic66").hover(HoverEnter, HoverExit);
+				topicColorTable["topic66"] = $("span.topic66").css("color");
+				$("span.topic67").hover(HoverEnter, HoverExit);
+				topicColorTable["topic67"] = $("span.topic67").css("color");
+				$("span.topic68").hover(HoverEnter, HoverExit);
+				topicColorTable["topic68"] = $("span.topic68").css("color");
+				$("span.topic69").hover(HoverEnter, HoverExit);
+				topicColorTable["topic69"] = $("span.topic69").css("color");
+				$("span.topic2").hover(HoverEnter, HoverExit);
+				topicColorTable["topic2"] = $("span.topic2").css("color");
+				$("span.topic6").hover(HoverEnter, HoverExit);
+				topicColorTable["topic6"] = $("span.topic6").css("color");
+				$("span.topic99").hover(HoverEnter, HoverExit);
+				topicColorTable["topic99"] = $("span.topic99").css("color");
+				$("span.topic98").hover(HoverEnter, HoverExit);
+				topicColorTable["topic98"] = $("span.topic98").css("color");
+				$("span.topic91").hover(HoverEnter, HoverExit);
+				topicColorTable["topic91"] = $("span.topic91").css("color");
+				$("span.topic90").hover(HoverEnter, HoverExit);
+				topicColorTable["topic90"] = $("span.topic90").css("color");
+				$("span.topic93").hover(HoverEnter, HoverExit);
+				topicColorTable["topic93"] = $("span.topic93").css("color");
+				$("span.topic92").hover(HoverEnter, HoverExit);
+				topicColorTable["topic92"] = $("span.topic92").css("color");
+				$("span.topic95").hover(HoverEnter, HoverExit);
+				topicColorTable["topic95"] = $("span.topic95").css("color");
+				$("span.topic94").hover(HoverEnter, HoverExit);
+				topicColorTable["topic94"] = $("span.topic94").css("color");
+				$("span.topic97").hover(HoverEnter, HoverExit);
+				topicColorTable["topic97"] = $("span.topic97").css("color");
+				$("span.topic96").hover(HoverEnter, HoverExit);
+				topicColorTable["topic96"] = $("span.topic96").css("color");
+				$("span.topic11").hover(HoverEnter, HoverExit);
+				topicColorTable["topic11"] = $("span.topic11").css("color");
+				$("span.topic10").hover(HoverEnter, HoverExit);
+				topicColorTable["topic10"] = $("span.topic10").css("color");
+				$("span.topic13").hover(HoverEnter, HoverExit);
+				topicColorTable["topic13"] = $("span.topic13").css("color");
+				$("span.topic12").hover(HoverEnter, HoverExit);
+				topicColorTable["topic12"] = $("span.topic12").css("color");
+				$("span.topic15").hover(HoverEnter, HoverExit);
+				topicColorTable["topic15"] = $("span.topic15").css("color");
+				$("span.topic14").hover(HoverEnter, HoverExit);
+				topicColorTable["topic14"] = $("span.topic14").css("color");
+				$("span.topic17").hover(HoverEnter, HoverExit);
+				topicColorTable["topic17"] = $("span.topic17").css("color");
+				$("span.topic16").hover(HoverEnter, HoverExit);
+				topicColorTable["topic16"] = $("span.topic16").css("color");
+				$("span.topic19").hover(HoverEnter, HoverExit);
+				topicColorTable["topic19"] = $("span.topic19").css("color");
+				$("span.topic18").hover(HoverEnter, HoverExit);
+				topicColorTable["topic18"] = $("span.topic18").css("color");
+				$("span.topic48").hover(HoverEnter, HoverExit);
+				topicColorTable["topic48"] = $("span.topic48").css("color");
+				$("span.topic49").hover(HoverEnter, HoverExit);
+				topicColorTable["topic49"] = $("span.topic49").css("color");
+				$("span.topic46").hover(HoverEnter, HoverExit);
+				topicColorTable["topic46"] = $("span.topic46").css("color");
+				$("span.topic47").hover(HoverEnter, HoverExit);
+				topicColorTable["topic47"] = $("span.topic47").css("color");
+				$("span.topic44").hover(HoverEnter, HoverExit);
+				topicColorTable["topic44"] = $("span.topic44").css("color");
+				$("span.topic45").hover(HoverEnter, HoverExit);
+				topicColorTable["topic45"] = $("span.topic45").css("color");
+				$("span.topic42").hover(HoverEnter, HoverExit);
+				topicColorTable["topic42"] = $("span.topic42").css("color");
+				$("span.topic43").hover(HoverEnter, HoverExit);
+				topicColorTable["topic43"] = $("span.topic43").css("color");
+				$("span.topic40").hover(HoverEnter, HoverExit);
+				topicColorTable["topic40"] = $("span.topic40").css("color");
+				$("span.topic41").hover(HoverEnter, HoverExit);
+				topicColorTable["topic41"] = $("span.topic41").css("color");
+				$("span.topic1").hover(HoverEnter, HoverExit);
+				topicColorTable["topic1"] = $("span.topic1").css("color");
+				$("span.topic5").hover(HoverEnter, HoverExit);
+				topicColorTable["topic5"] = $("span.topic5").css("color");
+				$("span.topic9").hover(HoverEnter, HoverExit);
+				topicColorTable["topic9"] = $("span.topic9").css("color");
+				$("span.topic77").hover(HoverEnter, HoverExit);
+				topicColorTable["topic77"] = $("span.topic77").css("color");
+				$("span.topic76").hover(HoverEnter, HoverExit);
+				topicColorTable["topic76"] = $("span.topic76").css("color");
+				$("span.topic75").hover(HoverEnter, HoverExit);
+				topicColorTable["topic75"] = $("span.topic75").css("color");
+				$("span.topic74").hover(HoverEnter, HoverExit);
+				topicColorTable["topic74"] = $("span.topic74").css("color");
+				$("span.topic73").hover(HoverEnter, HoverExit);
+				topicColorTable["topic73"] = $("span.topic73").css("color");
+				$("span.topic72").hover(HoverEnter, HoverExit);
+				topicColorTable["topic72"] = $("span.topic72").css("color");
+				$("span.topic71").hover(HoverEnter, HoverExit);
+				topicColorTable["topic71"] = $("span.topic71").css("color");
+				$("span.topic70").hover(HoverEnter, HoverExit);
+				topicColorTable["topic70"] = $("span.topic70").css("color");
+				$("span.topic79").hover(HoverEnter, HoverExit);
+				topicColorTable["topic79"] = $("span.topic79").css("color");
+				$("span.topic78").hover(HoverEnter, HoverExit);
+				topicColorTable["topic78"] = $("span.topic78").css("color");
+			});
+		</script>
+		<style>
+			.topic24 {
+				color: #d4d0ff;
+			}
+
+			.topic25 {
+				color: #cce864;
+			}
+
+			.topic26 {
+				color: #fcfff0;
+			}
+
+			.topic27 {
+				color: #3868ff;
+			}
+
+			.topic20 {
+				color: #c4ff70;
+			}
+
+			.topic21 {
+				color: #ffc064;
+			}
+
+			.topic22 {
+				color: #a0d8ff;
+			}
+
+			.topic23 {
+				color: #8cdcff;
+			}
+
+			.topic28 {
+				color: #ffaa84;
+			}
+
+			.topic29 {
+				color: #ff3084;
+			}
+
+			.topic0 {
+				color: #ff6c60;
+			}
+
+			.topic4 {
+				color: #98ff46;
+			}
+
+			.topic8 {
+				color: #ff80a8;
+			}
+
+			.topic59 {
+				color: #e0ff6a;
+			}
+
+			.topic58 {
+				color: #54c0ff;
+			}
+
+			.topic55 {
+				color: #e89cff;
+			}
+
+			.topic54 {
+				color: #e428ff;
+			}
+
+			.topic57 {
+				color: #c4a8ff;
+			}
+
+			.topic56 {
+				color: #28985c;
+			}
+
+			.topic51 {
+				color: #98f4ff;
+			}
+
+			.topic50 {
+				color: #acb4ff;
+			}
+
+			.topic53 {
+				color: #dcb4ff;
+			}
+
+			.topic52 {
+				color: #14ff5e;
+			}
+
+			.topic88 {
+				color: #24ff4c;
+			}
+
+			.topic89 {
+				color: #f480ff;
+			}
+
+			.topic82 {
+				color: #8460ff;
+			}
+
+			.topic83 {
+				color: #9480ff;
+			}
+
+			.topic80 {
+				color: #8878ac;
+			}
+
+			.topic81 {
+				color: #5488ff;
+			}
+
+			.topic86 {
+				color: #b0ccff;
+			}
+
+			.topic87 {
+				color: #945884;
+			}
+
+			.topic84 {
+				color: #4058ff;
+			}
+
+			.topic85 {
+				color: #80d0ff;
+			}
+
+			.topic3 {
+				color: #305c90;
+			}
+
+			.topic7 {
+				color: #607cff;
+			}
+
+			.topic39 {
+				color: #74b498;
+			}
+
+			.topic38 {
+				color: #489ce0;
+			}
+
+			.topic33 {
+				color: #b8ff48;
+			}
+
+			.topic32 {
+				color: #d8ecff;
+			}
+
+			.topic31 {
+				color: #4850ff;
+			}
+
+			.topic30 {
+				color: #d4ff3c;
+			}
+
+			.topic37 {
+				color: #ff4054;
+			}
+
+			.topic36 {
+				color: #a09488;
+			}
+
+			.topic35 {
+				color: #b050ac;
+			}
+
+			.topic34 {
+				color: #ff5c86;
+			}
+
+			.topic60 {
+				color: #1ca4ff;
+			}
+
+			.topic61 {
+				color: #d8c4c8;
+			}
+
+			.topic62 {
+				color: #04d0ff;
+			}
+
+			.topic63 {
+				color: #34ff86;
+			}
+
+			.topic64 {
+				color: #9c40f4;
+			}
+
+			.topic65 {
+				color: #44e850;
+			}
+
+			.topic66 {
+				color: #a8a4ff;
+			}
+
+			.topic67 {
+				color: #64b0ff;
+			}
+
+			.topic68 {
+				color: #9030bc;
+			}
+
+			.topic69 {
+				color: #8cb8ff;
+			}
+
+			.topic2 {
+				color: #d840c0;
+			}
+
+			.topic6 {
+				color: #a4ffbc;
+			}
+
+			.topic99 {
+				color: #944840;
+			}
+
+			.topic98 {
+				color: #7870ff;
+			}
+
+			.topic91 {
+				color: #ecc0ff;
+			}
+
+			.topic90 {
+				color: #cc4870;
+			}
+
+			.topic93 {
+				color: #f0dc84;
+			}
+
+			.topic92 {
+				color: #60dc9c;
+			}
+
+			.topic95 {
+				color: #b49cff;
+			}
+
+			.topic94 {
+				color: #44f4ff;
+			}
+
+			.topic97 {
+				color: #d074d8;
+			}
+
+			.topic96 {
+				color: #f068ff;
+			}
+
+			.topic11 {
+				color: #60ecd4;
+			}
+
+			.topic10 {
+				color: #ff50c4;
+			}
+
+			.topic13 {
+				color: #78ffc8;
+			}
+
+			.topic12 {
+				color: #d080ff;
+			}
+
+			.topic15 {
+				color: #40ff04;
+			}
+
+			.topic14 {
+				color: #ff0c96;
+			}
+
+			.topic17 {
+				color: #ff9caa;
+			}
+
+			.topic16 {
+				color: #14c0a0;
+			}
+
+			.topic19 {
+				color: #ff906c;
+			}
+
+			.topic18 {
+				color: #ffdc90;
+			}
+
+			.topic48 {
+				color: #e094ac;
+			}
+
+			.topic49 {
+				color: #6cd058;
+			}
+
+			.topic46 {
+				color: #68fff8;
+			}
+
+			.topic47 {
+				color: #ecff50;
+			}
+
+			.topic44 {
+				color: #f48cc8;
+			}
+
+			.topic45 {
+				color: #84ff48;
+			}
+
+			.topic42 {
+				color: #b074ff;
+			}
+
+			.topic43 {
+				color: #28e410;
+			}
+
+			.topic40 {
+				color: #7098c4;
+			}
+
+			.topic41 {
+				color: #8cccff;
+			}
+
+			.topic1 {
+				color: #fff0be;
+			}
+
+			.topic5 {
+				color: #4c6cfc;
+			}
+
+			.topic9 {
+				color: #50fcff;
+			}
+
+			.topic77 {
+				color: #ec0cb0;
+			}
+
+			.topic76 {
+				color: #98a8ff;
+			}
+
+			.topic75 {
+				color: #6458ff;
+			}
+
+			.topic74 {
+				color: #9498c8;
+			}
+
+			.topic73 {
+				color: #84c080;
+			}
+
+			.topic72 {
+				color: #5c70ff;
+			}
+
+			.topic71 {
+				color: #ec50ff;
+			}
+
+			.topic70 {
+				color: #ffcc34;
+			}
+
+			.topic79 {
+				color: #d0b0ff;
+			}
+
+			.topic78 {
+				color: #3000ff;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row table-row">
+				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+					<p><span class="normword">But</span><span>&nbsp;</span><span class="normword">as</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="normword">last</span><span>&nbsp;</span><span class="topicword topic74 topic74_1135" style="color:#9498c8;">whelmings</span><span>&nbsp;</span><span class="topicword topic61 topic61_690" style="color:#d8c4c8;">intermixingly</span><span>&nbsp;</span><span class="topicword topic57 topic57_2023" style="color:#c4a8ff;">poured</span><span>&nbsp;</span><span class="normword">themselves</span><span>&nbsp;</span><span class="normword">over</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic57 topic57_2024" style="color:#c4a8ff;">sunken</span><span>&nbsp;</span><span class="topicword topic88 topic88_1444" style="color:#24ff4c;">head</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic19 topic19_1604" style="color:#ff906c;">Indian</span><span>&nbsp;</span><span class="normword">at</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic19 topic19_1605" style="color:#ff906c;">mainmast,</span><span>&nbsp;</span><span class="topicword topic88 topic88_1445" style="color:#24ff4c;">leaving</span><span>&nbsp;</span><span class="normword">a</span><span>&nbsp;</span><span class="normword">few</span><span>&nbsp;</span><span class="topicword topic88 topic88_1446" style="color:#24ff4c;">inches</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic19 topic19_1606" style="color:#ff906c;">erect</span><span>&nbsp;</span><span class="topicword topic19 topic19_1607" style="color:#ff906c;">spar</span><span>&nbsp;</span><span class="normword">yet</span><span>&nbsp;</span><span class="topicword topic9 topic9_1558" style="color:#50fcff;">visible,</span><span>&nbsp;</span><span class="normword">together</span><span>&nbsp;</span><span class="normword">with</span><span>&nbsp;</span><span class="topicword topic19 topic19_1608" style="color:#ff906c;">long</span><span>&nbsp;</span><span class="topicword topic7 topic7_741" style="color:#607cff;">streaming</span><span>&nbsp;</span><span class="topicword topic11 topic11_1673" style="color:#60ecd4;">yards</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic57 topic57_2040" style="color:#c4a8ff;">flag,</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">which</span><span>&nbsp;</span><span class="topicword topic61 topic61_691" style="color:#d8c4c8;">calmly</span><span>&nbsp;</span><span class="topicword topic57 topic57_2026" style="color:#c4a8ff;">undulated,</span><span>&nbsp;</span><span class="normword">with</span><span>&nbsp;</span><span class="topicword topic88 topic88_1447" style="color:#24ff4c;">ironical</span><span>&nbsp;</span><span class="topicword topic74 topic74_1136" style="color:#9498c8;">coincidings,</span><span>&nbsp;</span><span class="normword">over</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic7 topic7_742" style="color:#607cff;">destroying</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic57 topic57_2027" style="color:#c4a8ff;">billows</span><span>&nbsp;</span><span class="normword">they</span><span>&nbsp;</span><span class="normword">almost</span><span>&nbsp;</span><span class="topicword topic7 topic7_743" style="color:#607cff;">touched;</span><span>&nbsp;</span><span class="normword">--</span><span>&nbsp;</span><span class="normword">at</span><span>&nbsp;</span><span class="normword">that</span><span>&nbsp;</span><span class="topicword topic57 topic57_2028" style="color:#c4a8ff;">instant,</span><span>&nbsp;</span><span class="normword">a</span><span>&nbsp;</span><span class="topicword topic17 topic17_690" style="color:#ff9caa;">red</span><span>&nbsp;</span><span class="topicword topic57 topic57_2029" style="color:#c4a8ff;">arm</span><span>&nbsp;</span><span class="normword">and</span><span>&nbsp;</span><span class="normword">a</span><span>&nbsp;</span><span class="topicword topic74 topic74_1147" style="color:#9498c8;">hammer</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic11 topic11_1674" style="color:#60ecd4;">hovered</span><span>&nbsp;</span><span class="topicword topic74 topic74_1138" style="color:#9498c8;">backwardly</span><span>&nbsp;</span><span class="topicword topic74 topic74_1139" style="color:#9498c8;">uplifted</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic11 topic11_1675" style="color:#60ecd4;">open</span><span>&nbsp;</span><span class="topicword topic88 topic88_1448" style="color:#24ff4c;">air,</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic91 topic91_886" style="color:#ecc0ff;">act</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="topicword topic91 topic91_887" style="color:#ecc0ff;">nailing</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic57 topic57_2040" style="color:#c4a8ff;">flag</span><span>&nbsp;</span><span class="topicword topic74 topic74_1141" style="color:#9498c8;">faster</span><span>&nbsp;</span><span class="normword">and</span><span>&nbsp;</span><span class="normword">yet</span><span>&nbsp;</span><span class="topicword topic74 topic74_1141" style="color:#9498c8;">faster</span><span>&nbsp;</span><span class="normword">to</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic74 topic74_1142" style="color:#9498c8;">subsiding</span><span>&nbsp;</span><span class="topicword topic74 topic74_1143" style="color:#9498c8;">spar.</span><span>&nbsp;</span><span class="normword">A</span><span>&nbsp;</span><span class="topicword topic57 topic57_2031" style="color:#c4a8ff;">sky-hawk</span><span>&nbsp;</span><span class="normword">that</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic7 topic7_744" style="color:#607cff;">tauntingly</span><span>&nbsp;</span><span class="normword">had</span><span>&nbsp;</span><span class="normword">followed</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic7 topic7_745" style="color:#607cff;">main-truck</span><span>&nbsp;</span><span class="normword">downwards</span><span>&nbsp;</span><span class="normword">from</span><span>&nbsp;</span><span class="normword">its</span><span>&nbsp;</span><span class="topicword topic86 topic86_978" style="color:#b0ccff;">natural</span><span>&nbsp;</span><span class="topicword topic7 topic7_746" style="color:#607cff;">home</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">among</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic7 topic7_747" style="color:#607cff;">stars,</span><span>&nbsp;</span><span class="topicword topic61 topic61_692" style="color:#d8c4c8;">pecking</span><span>&nbsp;</span><span class="normword">at</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic57 topic57_2040" style="color:#c4a8ff;">flag,</span><span>&nbsp;</span><span class="normword">and</span><span>&nbsp;</span><span class="topicword topic57 topic57_2033" style="color:#c4a8ff;">incommoding</span><span>&nbsp;</span><span class="topicword topic57 topic57_2034" style="color:#c4a8ff;">Tashtego</span><span>&nbsp;</span><span class="normword">there;</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">this</span><span>&nbsp;</span><span class="topicword topic57 topic57_2035" style="color:#c4a8ff;">bird</span><span>&nbsp;</span><span class="normword">now</span><span>&nbsp;</span><span class="topicword topic7 topic7_748" style="color:#607cff;">chanced</span><span>&nbsp;</span><span class="normword">to</span><span>&nbsp;</span><span class="topicword topic86 topic86_979" style="color:#b0ccff;">intercept</span><span>&nbsp;</span><span class="normword">its</span><span>&nbsp;</span><span class="topicword topic88 topic88_1449" style="color:#24ff4c;">broad</span><span>&nbsp;</span><span class="topicword topic74 topic74_1144" style="color:#9498c8;">fluttering</span><span>&nbsp;</span><span class="topicword topic57 topic57_2036" style="color:#c4a8ff;">wing</span><span>&nbsp;</span><span class="normword">between</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic74 topic74_1147" style="color:#9498c8;">hammer</span><span>&nbsp;</span><span class="normword">and</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic7 topic7_749" style="color:#607cff;">wood;</span><span>&nbsp;</span><span class="normword">and</span><span>&nbsp;</span><span class="topicword topic57 topic57_2037" style="color:#c4a8ff;">simultaneously</span><span>&nbsp;</span><span class="topicword topic74 topic74_1146" style="color:#9498c8;">feeling</span><span>&nbsp;</span><span class="normword">that</span><span>&nbsp;</span><span class="topicword topic7 topic7_750" style="color:#607cff;">etherial</span><span>&nbsp;</span><span class="topicword topic57 topic57_2038" style="color:#c4a8ff;">thrill,</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic88 topic88_1450" style="color:#24ff4c;">submerged</span><span>&nbsp;</span><span class="topicword topic26 topic26_630" style="color:#fcfff0;">savage</span><span>&nbsp;</span><span class="topicword topic63 topic63_1059" style="color:#34ff86;">beneath,</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="normword">his</span><span>&nbsp;</span><span class="topicword topic94 topic94_683" style="color:#44f4ff;">death-gasp,</span><span>&nbsp;</span><span class="normword">kept</span><span>&nbsp;</span><span class="normword">his</span><span>&nbsp;</span><span class="topicword topic74 topic74_1147" style="color:#9498c8;">hammer</span><span>&nbsp;</span><span class="topicword topic91 topic91_888" style="color:#ecc0ff;">frozen</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">there;</span><span>&nbsp;</span><span class="normword">and</span><span>&nbsp;</span><span class="normword">so</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span><span class="topicword topic90 topic90_918" style="color:#cc4870;">bird</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="topicword topic11 topic11_1676" style="color:#60ecd4;">heaven,</span><span>&nbsp;</span><span class="normword">with</span><span>&nbsp;</span><span class="topicword topic88 topic88_1451" style="color:#24ff4c;">archangelic</span><span>&nbsp;</span><span class="topicword topic11 topic11_1677" style="color:#60ecd4;">shrieks,</span><span>&nbsp;</span><span class="normword">and</span><span>&nbsp;</span><span class="normword">his</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic88 topic88_1452" style="color:#24ff4c;">imperial</span><span>&nbsp;</span><span class="topicword topic57 topic57_2039" style="color:#c4a8ff;">beak</span><span>&nbsp;</span><span class="topicword topic19 topic19_1609" style="color:#ff906c;">thrust</span><span>&nbsp;</span><span class="topicword topic94 topic94_684" style="color:#44f4ff;">upwards,</span><span>&nbsp;</span><span class="normword">and</span><span>&nbsp;</span><span class="normword">his</span><span>&nbsp;</span><span class="normword">whole</span><span>&nbsp;</span><span class="topicword topic63 topic63_1060" style="color:#34ff86;">captive</span><span>&nbsp;</span><span class="topicword topic88 topic88_1453" style="color:#24ff4c;">form</span><span>&nbsp;</span><span class="topicword topic74 topic74_1148" style="color:#9498c8;">folded</span><span>&nbsp;</span><span class="normword">in</span><span>&nbsp;</span><span class="normword">the</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic57 topic57_2040" style="color:#c4a8ff;">flag</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="topicword topic11 topic11_1678" style="color:#60ecd4;">Ahab,</span><span>&nbsp;</span><span class="normword">went</span><span>&nbsp;</span><span class="normword">down</span><span>&nbsp;</span><span class="normword">with</span><span>&nbsp;</span><span class="normword">his</span><span>&nbsp;</span><span class="topicword topic19 topic19_1610" style="color:#ff906c;">ship,</span><span>&nbsp;</span><span class="normword">which,</span><span>&nbsp;</span><span class="normword">like</span><span>&nbsp;</span><span class="topicword topic11 topic11_1679" style="color:#60ecd4;">Satan,</span><span>&nbsp;</span><span class="normword">would</span><span>&nbsp;</span><span class="normword">not</span><span>&nbsp;</span><span class="topicword topic88 topic88_1454" style="color:#24ff4c;">sink</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword">to</span><span>&nbsp;</span><span class="topicword topic74 topic74_1149" style="color:#9498c8;">hell</span><span>&nbsp;</span><span class="topicword topic11 topic11_1680" style="color:#60ecd4;">till</span><span>&nbsp;</span><span class="normword">she</span><span>&nbsp;</span><span class="normword">had</span><span>&nbsp;</span><span class="topicword topic19 topic19_1611" style="color:#ff906c;">dragged</span><span>&nbsp;</span><span class="normword">a</span><span>&nbsp;</span><span class="topicword topic91 topic91_889" style="color:#ecc0ff;">living</span><span>&nbsp;</span><span class="topicword topic74 topic74_1150" style="color:#9498c8;">part</span><span>&nbsp;</span><span class="normword">of</span><span>&nbsp;</span><span class="topicword topic9 topic9_1559" style="color:#50fcff;">heaven</span><span>&nbsp;</span><span class="normword">along</span><span>&nbsp;</span><span class="normword">with</span><span>&nbsp;</span><span class="normword">her,</span><span>&nbsp;</span><span class="normword">and</span><span>&nbsp;</span></p><br/>
+					<p><span class="topicword topic7 topic7_751" style="color:#607cff;">helmeted</span><span>&nbsp;</span><span class="normword">herself</span><span>&nbsp;</span><span class="normword">with</span><span>&nbsp;</span><span class="normword">it.</span><span>&nbsp;</span></p><br/>
+					<p><span class="normword"></span><span>&nbsp;</span></p><br/>
+				</div>
+				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 wordweightcolumn">
+					<p><span class="normword">Composite Rank. (doc topic rank, topic word rank)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1444" style="color:#24ff4c">1. head (4, 2)</span></p><br/>
+					<p><span class="topicword topic11 topic11_1678" style="color:#60ecd4">2. ahab (5, 2)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2028" style="color:#c4a8ff">3. instant (1, 10)</span></p><br/>
+					<p><span class="topicword topic19 topic19_1610" style="color:#ff906c">4. ship (6, 1)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1147" style="color:#9498c8">5. hammer (2, 20)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1147" style="color:#9498c8">5. hammer (2, 20)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1147" style="color:#9498c8">5. hammer (2, 20)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1150" style="color:#9498c8">6. part (2, 25)</span></p><br/>
+					<p><span class="topicword topic19 topic19_1608" style="color:#ff906c">7. long (6, 4)</span></p><br/>
+					<p><span class="topicword topic11 topic11_1680" style="color:#60ecd4">8. till (5, 8)</span></p><br/>
+					<p><span class="topicword topic7 topic7_747" style="color:#607cff">9. stars (3, 16)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1448" style="color:#24ff4c">10. air (4, 13)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2034" style="color:#c4a8ff">11. tashtego (1, 33)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1449" style="color:#24ff4c">12. broad (4, 20)</span></p><br/>
+					<p><span class="topicword topic91 topic91_889" style="color:#ecc0ff">13. living (7, 5)</span></p><br/>
+					<p><span class="topicword topic7 topic7_749" style="color:#607cff">14. wood (3, 35)</span></p><br/>
+					<p><span class="topicword topic7 topic7_746" style="color:#607cff">15. home (3, 47)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1446" style="color:#24ff4c">16. inches (4, 33)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2037" style="color:#c4a8ff">17. simultaneously (1, 82)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2040" style="color:#c4a8ff">18. flag (1, 88)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2040" style="color:#c4a8ff">18. flag (1, 88)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2040" style="color:#c4a8ff">18. flag (1, 88)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2040" style="color:#c4a8ff">18. flag (1, 88)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1148" style="color:#9498c8">19. folded (2, 79)</span></p><br/>
+					<p><span class="topicword topic11 topic11_1673" style="color:#60ecd4">20. yards (5, 36)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1453" style="color:#24ff4c">21. form (4, 49)</span></p><br/>
+					<p><span class="topicword topic19 topic19_1609" style="color:#ff906c">22. thrust (6, 43)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1139" style="color:#9498c8">23. uplifted (2, 108)</span></p><br/>
+					<p><span class="topicword topic7 topic7_748" style="color:#607cff">24. chanced (3, 69)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2036" style="color:#c4a8ff">25. wing (1, 110)</span></p><br/>
+					<p><span class="topicword topic11 topic11_1675" style="color:#60ecd4">26. open (5, 40)</span></p><br/>
+					<p><span class="topicword topic19 topic19_1606" style="color:#ff906c">27. erect (6, 57)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2035" style="color:#c4a8ff">28. bird (1, 135)</span></p><br/>
+					<p><span class="topicword topic19 topic19_1605" style="color:#ff906c">29. mainmast (6, 59)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1146" style="color:#9498c8">30. feeling (2, 109)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1143" style="color:#9498c8">31. spar (2, 116)</span></p><br/>
+					<p><span class="topicword topic7 topic7_743" style="color:#607cff">32. touched (3, 84)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1445" style="color:#24ff4c">33. leaving (4, 66)</span></p><br/>
+					<p><span class="topicword topic19 topic19_1604" style="color:#ff906c">34. indian (6, 74)</span></p><br/>
+					<p><span class="topicword topic91 topic91_886" style="color:#ecc0ff">35. act (7, 24)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2023" style="color:#c4a8ff">36. poured (1, 168)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1454" style="color:#24ff4c">37. sink (4, 91)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1450" style="color:#24ff4c">38. submerged (4, 80)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2027" style="color:#c4a8ff">39. billows (1, 187)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1141" style="color:#9498c8">40. faster (2, 150)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1141" style="color:#9498c8">40. faster (2, 150)</span></p><br/>
+					<p><span class="topicword topic7 topic7_741" style="color:#607cff">41. streaming (3, 101)</span></p><br/>
+					<p><span class="topicword topic61 topic61_691" style="color:#d8c4c8">42. calmly (8, 24)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2029" style="color:#c4a8ff">43. arm (1, 255)</span></p><br/>
+					<p><span class="topicword topic11 topic11_1677" style="color:#60ecd4">44. shrieks (5, 108)</span></p><br/>
+					<p><span class="topicword topic17 topic17_690" style="color:#ff9caa">45. red (13, 3)</span></p><br/>
+					<p><span class="topicword topic94 topic94_684" style="color:#44f4ff">46. upwards (12, 22)</span></p><br/>
+					<p><span class="topicword topic11 topic11_1676" style="color:#60ecd4">47. heaven (5, 129)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1149" style="color:#9498c8">48. hell (2, 236)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1142" style="color:#9498c8">49. subsiding (2, 207)</span></p><br/>
+					<p><span class="topicword topic91 topic91_888" style="color:#ecc0ff">50. frozen (7, 57)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2024" style="color:#c4a8ff">51. sunken (1, 308)</span></p><br/>
+					<p><span class="topicword topic19 topic19_1611" style="color:#ff906c">52. dragged (6, 180)</span></p><br/>
+					<p><span class="topicword topic19 topic19_1607" style="color:#ff906c">53. spar (6, 167)</span></p><br/>
+					<p><span class="topicword topic63 topic63_1059" style="color:#34ff86">54. beneath (10, 35)</span></p><br/>
+					<p><span class="topicword topic9 topic9_1559" style="color:#50fcff">55. heaven (9, 39)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2039" style="color:#c4a8ff">56. beak (1, 408)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2038" style="color:#c4a8ff">57. thrill (1, 390)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2026" style="color:#c4a8ff">58. undulated (1, 387)</span></p><br/>
+					<p><span class="topicword topic86 topic86_978" style="color:#b0ccff">59. natural (11, 47)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1144" style="color:#9498c8">60. fluttering (2, 336)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1138" style="color:#9498c8">61. backwardly (2, 541)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1136" style="color:#9498c8">62. coincidings (2, 422)</span></p><br/>
+					<p><span class="topicword topic74 topic74_1135" style="color:#9498c8">63. whelmings (2, 523)</span></p><br/>
+					<p><span class="topicword topic7 topic7_751" style="color:#607cff">64. helmeted (3, 263)</span></p><br/>
+					<p><span class="topicword topic7 topic7_750" style="color:#607cff">65. etherial (3, 404)</span></p><br/>
+					<p><span class="topicword topic7 topic7_745" style="color:#607cff">66. main-truck (3, 309)</span></p><br/>
+					<p><span class="topicword topic7 topic7_744" style="color:#607cff">67. tauntingly (3, 312)</span></p><br/>
+					<p><span class="topicword topic7 topic7_742" style="color:#607cff">68. destroying (3, 393)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1452" style="color:#24ff4c">69. imperial (4, 292)</span></p><br/>
+					<p><span class="topicword topic26 topic26_630" style="color:#fcfff0">70. savage (14, 24)</span></p><br/>
+					<p><span class="topicword topic11 topic11_1679" style="color:#60ecd4">71. satan (5, 241)</span></p><br/>
+					<p><span class="topicword topic11 topic11_1674" style="color:#60ecd4">72. hovered (5, 242)</span></p><br/>
+					<p><span class="topicword topic63 topic63_1060" style="color:#34ff86">73. captive (10, 86)</span></p><br/>
+					<p><span class="topicword topic9 topic9_1558" style="color:#50fcff">74. visible (9, 113)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2033" style="color:#c4a8ff">75. incommoding (1, 507)</span></p><br/>
+					<p><span class="topicword topic57 topic57_2031" style="color:#c4a8ff">76. sky-hawk (1, 476)</span></p><br/>
+					<p><span class="topicword topic90 topic90_918" style="color:#cc4870">77. bird (15, 50)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1451" style="color:#24ff4c">78. archangelic (4, 519)</span></p><br/>
+					<p><span class="topicword topic88 topic88_1447" style="color:#24ff4c">79. ironical (4, 544)</span></p><br/>
+					<p><span class="topicword topic91 topic91_887" style="color:#ecc0ff">80. nailing (7, 451)</span></p><br/>
+					<p><span class="topicword topic61 topic61_692" style="color:#d8c4c8">81. pecking (8, 203)</span></p><br/>
+					<p><span class="topicword topic61 topic61_690" style="color:#d8c4c8">82. intermixingly (8, 252)</span></p><br/>
+					<p><span class="topicword topic94 topic94_683" style="color:#44f4ff">83. death-gasp (12, 431)</span></p><br/>
+					<p><span class="topicword topic86 topic86_979" style="color:#b0ccff">84. intercept (11, 375)</span></p><br/>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+			<div class"container-fluid">
+				<div class="row">
+					<p><span class="topicword topicwordlist">Topic Word List</span></p><br/>
+				</div>
+				<div class="row meta_row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<p><span class="normword meta_label">Word:&nbsp;</span><span class="meta_topicword"></span></p><br/>
+					</div>					<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+						<p><span class="normword meta_label">Composite Rank:&nbsp;</span><span class="topicword compositerank"></span></p><br/>
+						<p><span class="normword meta_label">Document-Topic Rank:&nbsp;</span><span class="topicword doctopicrank"></span></p><br/>
+						<p><span class="normword meta_label">Topic-Word Rank:&nbsp;</span><span class="topicword topicwordrank"></span></p><br/>
+					</div>
+				</div>
+				<p><span class="invisible_topicwordlist topic0">Topic 0: sweet, heart, love, good, heaven, poor, girl, angel, dead, strange, fair, lucy, cheek, heavenly, cried, thing, law, isabel, soul, leave</span></p>
+				<p><span class="invisible_topicwordlist topic1">Topic 1: morning, standing, hand, to-day, work, finger, suppose, falling, putting, stage, merry, hints, christmas, moved, keen, passed, vishnoo, nature, order, handed</span></p>
+				<p><span class="invisible_topicwordlist topic2">Topic 2: time, turkey, nippers, made, ginger, place, business, o'clock, afternoon, man, short, step, making, awhile, nut, dinner, coming, meet, steps, long</span></p>
+				<p><span class="invisible_topicwordlist topic3">Topic 3: good, table, dates, put, room, till, called, hear, began, hands, back, case, fellow, writing, bed, left, fine, dinner, floor, handkerchief</span></p>
+				<p><span class="invisible_topicwordlist topic4">Topic 4: long, side, stood, stone, ship's, moment, hull, hanging, terror, ere, pequod's, feet, lips, devil, bulwarks, try-works, lantern, lighted, decks, cutting</span></p>
+				<p><span class="invisible_topicwordlist topic5">Topic 5: great, lord, sort, leviathan, master, grand, late, deep, matter, remains, young, times, john, touching, indispensable, entitled, character, mariners, lights, happened</span></p>
+				<p><span class="invisible_topicwordlist topic6">Topic 6: years, ago, world, day, american, ships, long, make, whaling, whale-ship, land, england, thousand, water, foolish, port, home, terrors, ground, voyage</span></p>
+				<p><span class="invisible_topicwordlist topic7">Topic 7: night, thought, light, white, nay, days, sat, eat, hours, scarce, hot, morning, brow, middle, head, coach, snow, stars, added, watching</span></p>
+				<p><span class="invisible_topicwordlist topic8">Topic 8: god, jonah, truth, shipmates, pity, holy, made, fear, hold, key, remember, lesson, bless, sin, jonah's, lord, good-bye, bible, cries, light</span></p>
+				<p><span class="invisible_topicwordlist topic9">Topic 9: sea, sight, waves, air, ship, slowly, sound, rolled, beneath, lay, seas, vast, side, mild, ahab's, madness, sails, waters, feet, long</span></p>
+				<p><span class="invisible_topicwordlist topic10">Topic 10: pierre, isabel, lucy, things, felt, soul, mother, mind, life, feel, sweet, slightest, wholly, brought, grief, love, fate, strange, final, mother's</span></p>
+				<p><span class="invisible_topicwordlist topic11">Topic 11: ship, ahab, captain, boat, pequod, sea, time, till, crew, deck, boat's, forward, day, suddenly, stood, stern, fell, standing, water, remained</span></p>
+				<p><span class="invisible_topicwordlist topic12">Topic 12: green, sad, dark, gloom, living, winding, sadness, melancholy, unknown, ah, tree, grief, earth, fair, real, feeling, deeper, led, grim, vain</span></p>
+				<p><span class="invisible_topicwordlist topic13">Topic 13: hold, fool, ay, clear, ha, turn, quit, feel, step, called, bread, flying, drink, muttered, leaving, strike, blind, bursting, hearts, weary</span></p>
+				<p><span class="invisible_topicwordlist topic14">Topic 14: man, boy, sleep, friend, thing, things, pass, fixed, fine, follow, wake, blow, kind, question, suppose, wine, yonder, told, generally, friends</span></p>
+				<p><span class="invisible_topicwordlist topic15">Topic 15: bartleby, office, man, morning, written, great, sort, day, position, word, scrivener, pale, peculiar, desk, appeared, reference, prove, thought, report, call</span></p>
+				<p><span class="invisible_topicwordlist topic16">Topic 16: men, love, earth, god, things, mortal, lies, forty, day, immortal, lie, high, beneath, made, green, stand, joy, hearts, fire, eyes</span></p>
+				<p><span class="invisible_topicwordlist topic17">Topic 17: french, fight, harpooneer, red, rest, battle, book, day, repeated, stand, bottom, fleet, run, guernsey-man, carried, rose, giving, wounded, brought, perceived</span></p>
+				<p><span class="invisible_topicwordlist topic18">Topic 18: answer, lay, question, stood, coat, sat, pen, hand, ink, hands, part, hamlet, left, feet, previous, found, sheet, addressing, drawing, threw</span></p>
+				<p><span class="invisible_topicwordlist topic19">Topic 19: ship, end, head, hands, long, aloft, water, hold, iron, rope, body, lower, till, high, place, line, rigging, sharp, dead, sight</span></p>
+				<p><span class="invisible_topicwordlist topic20">Topic 20: white, wild, great, thousand, condition, hue, show, thousands, creature, ways, times, mountains, plainly, faint, gliding, gain, phantoms, herds, sweep, past</span></p>
+				<p><span class="invisible_topicwordlist topic21">Topic 21: small, present, general, men, altogether, manner, english, full, sort, genius, charles, degree, received, seldom, ambition, books, spirit, respect, apt, productions</span></p>
+				<p><span class="invisible_topicwordlist topic22">Topic 22: poor, pip, queequeg, fire, fellow, slowly, half, negro, arm, lay, made, died, hands, run, game, caught, lifted, alive, jumped, tambourine</span></p>
+				<p><span class="invisible_topicwordlist topic23">Topic 23: whale, sperm, fishery, species, body, greenland, english, famous, whalemen, fish, leviathan, bones, found, whaling, fishermen, seas, coast, reason, monster, hunters</span></p>
+				<p><span class="invisible_topicwordlist topic24">Topic 24: hat, water, long, standing, lay, hundred, heads, wall, heart, thought, lecture, entered, visit, large, elijah, venerable, south, wet, back, slouched</span></p>
+				<p><span class="invisible_topicwordlist topic25">Topic 25: whales, great, eyes, part, order, don, battle, circle, present, elephant, subject, lake, system, volume, sailor, baleen, leviathan, trunk, creatures, pequod's</span></p>
+				<p><span class="invisible_topicwordlist topic26">Topic 26: queequeg, bed, pipe, times, smoking, turned, priest, vessel, felt, day, matter, seat, foot, leaning, legs, tiller, tomahawk, ten, touched, keeping</span></p>
+				<p><span class="invisible_topicwordlist topic27">Topic 27: people, house, made, place, leave, quiet, poor, spoke, understand, country, miss, present, gave, told, village, left, young, mansion, cottage, find</span></p>
+				<p><span class="invisible_topicwordlist topic28">Topic 28: hand, light, holding, made, heavy, chest, blood, broken, face, regular, back, bit, fleece, candle, held, pulpit, blow, tongs, black, close</span></p>
+				<p><span class="invisible_topicwordlist topic29">Topic 29: present, free, account, sword, drop, ten, find, plinlimmon, plotinus, standing, hundred, millthorpe, walls, warp, dull, thousand, declare, shoulder, spout, dollars</span></p>
+				<p><span class="invisible_topicwordlist topic30">Topic 30: thing, isabel, thought, mystery, light, mind, memory, secret, common, soul, ground, likewise, objects, impossible, find, truth, dark, isabel's, living, sacred</span></p>
+				<p><span class="invisible_topicwordlist topic31">Topic 31: life, death, time, great, left, small, worse, single, put, making, drag, thrown, difference, sleeping, struck, strong, tied, space, earnestly, continually</span></p>
+				<p><span class="invisible_topicwordlist topic32">Topic 32: reason, men, mere, mad, fact, offer, heart, author, simply, subject, indifferent, vain, apparent, act, possibly, thing, calm, hate, vast, true</span></p>
+				<p><span class="invisible_topicwordlist topic33">Topic 33: general, law, act, mind, put, martial, occasion, mere, court, wholly, case, earnest, part, events, naval, nature, knowing, matter, effect, manner</span></p>
+				<p><span class="invisible_topicwordlist topic34">Topic 34: thought, moment, time, door, sudden, good, round, present, heard, word, stood, sight, high, turned, open, advanced, quickly, advance, deliberately, happened</span></p>
+				<p><span class="invisible_topicwordlist topic35">Topic 35: made, great, sea, began, sitting, moment, eating, low, cut, wild, directly, meat, butter, mixed, clam, cod, forms, supper, fat, fright</span></p>
+				<p><span class="invisible_topicwordlist topic36">Topic 36: pierre, time, face, manner, aspect, read, comprehend, general, fully, conceit, letter, singular, human, pamphlet, mystical, altogether, visible, profound, countenance, conscious</span></p>
+				<p><span class="invisible_topicwordlist topic37">Topic 37: bartleby, business, days, letters, case, answer, great, prefer, money, day, short, papers, altogether, hands, means, examine, bit, sudden, connected, future</span></p>
+				<p><span class="invisible_topicwordlist topic38">Topic 38: men, god, man, fine, years, unknown, time, black, short, hard, seldom, chance, number, mankind, hair, takes, bottom, year, season, command</span></p>
+				<p><span class="invisible_topicwordlist topic39">Topic 39: harpooneer, breakfast, room, morning, stairs, small, good, landlord, mrs, account, time, set, cold, night, make, quietly, duty, company, ere, careful</span></p>
+				<p><span class="invisible_topicwordlist topic40">Topic 40: thou, thee, thy, pierre, brother, isabel, art, hast, speak, feel, hath, god, heart, nay, dost, thine, sister, thyself, wilt, ah</span></p>
+				<p><span class="invisible_topicwordlist topic41">Topic 41: sea, ship, nantucket, land, long, ships, pequod, ocean, sail, great, pacific, masts, passage, sight, sailing, waters, island, whalemen, nigh, seamen</span></p>
+				<p><span class="invisible_topicwordlist topic42">Topic 42: things, strange, wholly, fear, degree, thing, small, idea, smile, made, man's, vague, soul, life, original, chief, mere, inferior, published, vanity</span></p>
+				<p><span class="invisible_topicwordlist topic43">Topic 43: men, silence, virtue, great, knew, left, evil, charge, eternal, freely, wild, ball, created, turn, make, invisible, give, mark, practicable, hit</span></p>
+				<p><span class="invisible_topicwordlist topic44">Topic 44: father, portrait, aunt, cousin, picture, strange, ralph, thing, child, painting, dear, father's, painted, story, hung, likeness, times, young, cash, paint</span></p>
+				<p><span class="invisible_topicwordlist topic45">Topic 45: ahab, ye, captain, aye, peleg, bildad, cried, man, starbuck, whale, men, dick, moby, white, ship, leg, cabin, good, stand, eye</span></p>
+				<p><span class="invisible_topicwordlist topic46">Topic 46: time, dead, possession, fast, fast-fish, seized, loose-fish, fish, set, previously, case, form, swam, party, thrown, judge, objection, buried, pretty, duke</span></p>
+				<p><span class="invisible_topicwordlist topic47">Topic 47: mouth, tongue, sharks, shark, killed, admit, a.d, spanish, hemp, nantucketer, dead, yonder, rope, language, kill, whiskers, nervous, talked, floating, wonderful</span></p>
+				<p><span class="invisible_topicwordlist topic48">Topic 48: ye, thou, thee, world, woe, tis, sweet, peace, make, sun, gods, glad, art, hell, yea, blacksmith, lad, murder, seeks, hint</span></p>
+				<p><span class="invisible_topicwordlist topic49">Topic 49: man, world, things, soul, time, truth, human, body, thing, true, god, wisdom, forever, general, mere, peculiar, folly, greenwich, china, earthly</span></p>
+				<p><span class="invisible_topicwordlist topic50">Topic 50: nature, sailor, made, power, life, young, view, handsome, sort, whiteness, america, kind, terrible, character, person, spirit, hereditary, strong, gentlemen, instances</span></p>
+				<p><span class="invisible_topicwordlist topic51">Topic 51: captain, vere, time, men, ship, officers, officer, sailor, lieutenant, ship's, watch, service, quarter-deck, duty, company, tho, story, man, crew, circumstances</span></p>
+				<p><span class="invisible_topicwordlist topic52">Topic 52: ye, it's, don't, he's, i'll, man, stubb, there's, that's, cook, what's, queer, em, won't, i've, leg, flask, ha, hear, sort</span></p>
+				<p><span class="invisible_topicwordlist topic53">Topic 53: found, vast, creature, history, remain, time, minute, gulf, ground, call, ambergris, blood, rocks, named, late, fifteen, representing, minds, hard, precise</span></p>
+				<p><span class="invisible_topicwordlist topic54">Topic 54: whaling, voyage, seas, gentlemen, vessels, found, set, originally, fact, times, people, business, pass, curious, history, hint, separate, queen, hold, state</span></p>
+				<p><span class="invisible_topicwordlist topic55">Topic 55: made, strange, hand, ill, form, sound, common, started, reply, face, close, sort, shriek, previous, meaning, continued, added, bidding, words, sewing</span></p>
+				<p><span class="invisible_topicwordlist topic56">Topic 56: called, mates, de, order, harpooneers, deck, dat, starboard, cabin, spare, turning, lances, dam, pale, driver, steward, den, broad, bellies, main</span></p>
+				<p><span class="invisible_topicwordlist topic57">Topic 57: boat, whale, boats, line, white, round, whale's, darted, chase, harpoon, instant, bows, sea, dick, cry, oars, wake, men, moby, distance</span></p>
+				<p><span class="invisible_topicwordlist topic58">Topic 58: face, strangely, days, countenance, looked, form, felt, gay, aspect, eye, strange, thing, weeks, remarkable, beheld, lad, composed, features, glass, ocean</span></p>
+				<p><span class="invisible_topicwordlist topic59">Topic 59: woman, human, sister, beautiful, life, mary, stranger, women, beauty, breast, gentleman, girls, called, maternal, faith, spoke, ran, occurred, began, stare</span></p>
+				<p><span class="invisible_topicwordlist topic60">Topic 60: stubb, ye, flask, that's, don't, cried, give, pull, start, devil, boys, easy, heard, word, men, sailor, starbuck, spring, em, there's</span></p>
+				<p><span class="invisible_topicwordlist topic61">Topic 61: sir, mr, good, falsgrave, madam, glendinning, replied, delly, carpenter, morning, clergyman, pray, pardon, cried, show, voice, person, gentleman, gentlemen, lady</span></p>
+				<p><span class="invisible_topicwordlist topic62">Topic 62: years, good, man, days, whales, true, carried, cape, ashore, marked, times, hope, instances, dangerous, period, temple, fitted, christian, prior, supposed</span></p>
+				<p><span class="invisible_topicwordlist topic63">Topic 63: part, small, lower, long, side, head, front, large, deck, teeth, bone, jaw, round, huge, forward, close, called, sides, free, glass</span></p>
+				<p><span class="invisible_topicwordlist topic64">Topic 64: hand, letter, fate, st, pride, moment, fly, stand, arms, thing, breath, delight, cried, dear, comfort, truth, pierre, joy, embrace, spirit</span></p>
+				<p><span class="invisible_topicwordlist topic65">Topic 65: street, church, chambers, city, apostles, lofty, hours, tower, ladies, social, order, cousin, purpose, coming, rooms, building, ancient, absence, eye, society</span></p>
+				<p><span class="invisible_topicwordlist topic66">Topic 66: pierre, father, mother, glendinning, son, child, father's, young, wife, family, youth, boy, brother, lady, pierre's, years, pride, children, fate, married</span></p>
+				<p><span class="invisible_topicwordlist topic67">Topic 67: eyes, body, back, hours, work, glance, motion, silence, quick, half, lines, eye, faces, hung, interval, turned, turn, stand, aspect, end</span></p>
+				<p><span class="invisible_topicwordlist topic68">Topic 68: ahab, eyes, crew, moment, starbuck, voice, eye, coming, instant, water, pointed, object, side, turns, low, deck, sea, bottom, steel, bent</span></p>
+				<p><span class="invisible_topicwordlist topic69">Topic 69: pierre, lucy, glen, mrs, glendinning, tartan, love, mother, sister, young, secret, girl, lucy's, dear, martha, pierre's, frederic, lady, thought, youthful</span></p>
+				<p><span class="invisible_topicwordlist topic70">Topic 70: life, things, feel, kings, noble, lost, fine, brain, man's, god, air, human, fresh, royal, majesty, names, crown, bear, innumerable, divine</span></p>
+				<p><span class="invisible_topicwordlist topic71">Topic 71: pierre, grand, cold, beneath, horse, horses, noble, steed, draw, lean, warm, hand, gray, inn, dog, proud, throw, man, sash, phaeton</span></p>
+				<p><span class="invisible_topicwordlist topic72">Topic 72: guitar, word, long, air, speak, gazing, words, heard, put, steady, murmured, day, spoken, spell, answered, other's, broken, time, responded, caught</span></p>
+				<p><span class="invisible_topicwordlist topic73">Topic 73: pierre, isabel, eyes, felt, suddenly, strange, arm, turned, thought, till, mind, paused, thoughts, looked, sat, face, act, wonderful, wholly, girl</span></p>
+				<p><span class="invisible_topicwordlist topic74">Topic 74: night, day, eyes, deck, till, silent, wind, hands, steelkilt, hour, fire, full, hard, sat, lakeman, knew, gentlemen, lamp, sought, closed</span></p>
+				<p><span class="invisible_topicwordlist topic75">Topic 75: book, whale, whales, chapter, dutch, long, sea, fish, voyage, work, porpoise, ii, folio, mast-head, bread, learned, iii, whaling, southern, octavo</span></p>
+				<p><span class="invisible_topicwordlist topic76">Topic 76: world, long, life, beauty, man, summer, heart, hath, love, young, light, wonderful, heaven, country, earth, pierre's, youth, form, wide, things</span></p>
+				<p><span class="invisible_topicwordlist topic77">Topic 77: coffin, door, town, gold, sailors, country, open, heads, dress, harpooneer, landlord, can't, answered, fresh, sign, run, sort, home, sake, mark</span></p>
+				<p><span class="invisible_topicwordlist topic78">Topic 78: house, bed, heard, passed, speak, place, round, time, lived, side, back, arms, windows, rest, held, returned, quick, day, window, foot</span></p>
+				<p><span class="invisible_topicwordlist topic79">Topic 79: whale, sperm, whales, great, time, full, long, hump, small, back, fifty, curious, precise, head, scientific, longer, points, fairly, living, spout</span></p>
+				<p><span class="invisible_topicwordlist topic80">Topic 80: world, death, humanity, equally, infinite, burn, thing, heart, utter, reveal, sin, evidence, cast, hour, future, sounds, dumb, misery, haughty, drawn</span></p>
+				<p><span class="invisible_topicwordlist topic81">Topic 81: mother, face, character, father, thought, singular, knew, precious, shrine, perfectly, shadows, chanced, holy, resolved, descended, plainly, finally, mother's, girl, honest</span></p>
+				<p><span class="invisible_topicwordlist topic82">Topic 82: man, sort, air, found, peculiar, thinking, intervals, term, entire, home, opening, pleasant, people, mood, rapidly, call, questions, put, passing, contrast</span></p>
+				<p><span class="invisible_topicwordlist topic83">Topic 83: billy, man, budd, young, claggart, foretopman, master-at-arms, sort, billy's, claggart's, expression, moral, matter, words, effect, fellow, voice, honor, tho, doubtless</span></p>
+				<p><span class="invisible_topicwordlist topic84">Topic 84: black, round, arm, looked, prefer, parts, empty, paid, gigantic, vague, figure, ears, hollow, removed, loudly, loose, huge, planted, paper, reply</span></p>
+				<p><span class="invisible_topicwordlist topic85">Topic 85: pierre, meadows, long, day, blue, morning, saddle, early, hills, eyes, evening, changed, woods, thoughts, general, drew, pure, end, river, golden</span></p>
+				<p><span class="invisible_topicwordlist topic86">Topic 86: sun, air, round, sky, calm, bright, sea, storm, tossed, mouth, heard, swift, flames, gold, turned, nigh, fro, noon, enchanted, soil</span></p>
+				<p><span class="invisible_topicwordlist topic87">Topic 87: queequeg, savage, harpoon, tashtego, head, daggoo, queequeg's, king, rest, wild, teeth, part, yojo, pagan, looked, days, native, lie, gave, island</span></p>
+				<p><span class="invisible_topicwordlist topic88">Topic 88: whale, head, feet, sperm, whale's, length, water, tail, side, surface, entire, point, air, ten, view, ribs, mouth, flukes, skull, broad</span></p>
+				<p><span class="invisible_topicwordlist topic89">Topic 89: board, years, ago, world, heard, home, knowledge, sign, word, true, received, signs, found, pay, make, wanting, crossing, degree, separately, seated</span></p>
+				<p><span class="invisible_topicwordlist topic90">Topic 90: soul, heart, dark, round, feel, world, touch, brow, souls, dead, woe, pale, feels, lead, soft, head, nameless, anguish, long, spiritual</span></p>
+				<p><span class="invisible_topicwordlist topic91">Topic 91: man, great, whale, thing, living, mighty, live, die, true, nose, leviathan, vast, waters, wherefore, combined, fish, lost, eternal, ages, death</span></p>
+				<p><span class="invisible_topicwordlist topic92">Topic 92: hand, man, end, cried, millthorpe, till, pole, light, work, deep, june, bucket, deeper, individual, caught, lost, hat, bring, porter, begin</span></p>
+				<p><span class="invisible_topicwordlist topic93">Topic 93: point, found, chance, possibly, doubt, find, thought, shock, part, city, entire, previous, case, made, mention, harpoons, plain, interval, follow, moment</span></p>
+				<p><span class="invisible_topicwordlist topic94">Topic 94: oil, touching, case, thing, considerable, bedford, foreign, casks, wonders, live, virtue, place, business, stuff, degree, quantity, state, blubber, rare, fine</span></p>
+				<p><span class="invisible_topicwordlist topic95">Topic 95: white, man, mate, life, crew, iron, whale, watch, heat, place, set, ivory, mast-heads, strange, squall, chief, steel, pipe, lungs, deck</span></p>
+				<p><span class="invisible_topicwordlist topic96">Topic 96: small, give, resolved, makes, reading, long, seamen, equal, continual, cross, yield, surprise, occasion, vain, bear, charity, philosophy, remain, seat, sit</span></p>
+				<p><span class="invisible_topicwordlist topic97">Topic 97: aye, man, starbuck, sir, wind, ahab, tis, make, full, poor, god, thinking, back, turn, play, instant, log, stubb, worse, beware</span></p>
+				<p><span class="invisible_topicwordlist topic98">Topic 98: thing, present, man, circumstances, time, matter, peculiar, natural, life, point, part, knew, mind, thought, general, touching, person, contact, personal, common</span></p>
+				<p><span class="invisible_topicwordlist topic99">Topic 99: pierre, room, isabel, hand, door, chamber, delly, entered, window, floor, silent, sat, moment, chair, pierre's, met, voice, corner, open, passed</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1444">head</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1444">1</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1444">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1444">2</span></p>
+				<p><span class="invisible_topicword topic11 topic11_1678">ahab</span></p>
+				<p><span class="invisible_compositerank topic11 topic11_1678">2</span></p>
+				<p><span class="invisible_doctopicrank topic11 topic11_1678">5</span></p>
+				<p><span class="invisible_topicwordrank topic11 topic11_1678">2</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2028">instant</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2028">3</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2028">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2028">10</span></p>
+				<p><span class="invisible_topicword topic19 topic19_1610">ship</span></p>
+				<p><span class="invisible_compositerank topic19 topic19_1610">4</span></p>
+				<p><span class="invisible_doctopicrank topic19 topic19_1610">6</span></p>
+				<p><span class="invisible_topicwordrank topic19 topic19_1610">1</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1147">hammer</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1147">5</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1147">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1147">20</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1147">hammer</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1147">5</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1147">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1147">20</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1147">hammer</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1147">5</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1147">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1147">20</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1150">part</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1150">6</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1150">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1150">25</span></p>
+				<p><span class="invisible_topicword topic19 topic19_1608">long</span></p>
+				<p><span class="invisible_compositerank topic19 topic19_1608">7</span></p>
+				<p><span class="invisible_doctopicrank topic19 topic19_1608">6</span></p>
+				<p><span class="invisible_topicwordrank topic19 topic19_1608">4</span></p>
+				<p><span class="invisible_topicword topic11 topic11_1680">till</span></p>
+				<p><span class="invisible_compositerank topic11 topic11_1680">8</span></p>
+				<p><span class="invisible_doctopicrank topic11 topic11_1680">5</span></p>
+				<p><span class="invisible_topicwordrank topic11 topic11_1680">8</span></p>
+				<p><span class="invisible_topicword topic7 topic7_747">stars</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_747">9</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_747">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_747">16</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1448">air</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1448">10</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1448">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1448">13</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2034">tashtego</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2034">11</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2034">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2034">33</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1449">broad</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1449">12</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1449">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1449">20</span></p>
+				<p><span class="invisible_topicword topic91 topic91_889">living</span></p>
+				<p><span class="invisible_compositerank topic91 topic91_889">13</span></p>
+				<p><span class="invisible_doctopicrank topic91 topic91_889">7</span></p>
+				<p><span class="invisible_topicwordrank topic91 topic91_889">5</span></p>
+				<p><span class="invisible_topicword topic7 topic7_749">wood</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_749">14</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_749">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_749">35</span></p>
+				<p><span class="invisible_topicword topic7 topic7_746">home</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_746">15</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_746">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_746">47</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1446">inches</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1446">16</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1446">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1446">33</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2037">simultaneously</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2037">17</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2037">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2037">82</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2040">flag</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2040">18</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2040">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2040">88</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2040">flag</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2040">18</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2040">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2040">88</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2040">flag</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2040">18</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2040">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2040">88</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2040">flag</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2040">18</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2040">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2040">88</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1148">folded</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1148">19</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1148">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1148">79</span></p>
+				<p><span class="invisible_topicword topic11 topic11_1673">yards</span></p>
+				<p><span class="invisible_compositerank topic11 topic11_1673">20</span></p>
+				<p><span class="invisible_doctopicrank topic11 topic11_1673">5</span></p>
+				<p><span class="invisible_topicwordrank topic11 topic11_1673">36</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1453">form</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1453">21</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1453">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1453">49</span></p>
+				<p><span class="invisible_topicword topic19 topic19_1609">thrust</span></p>
+				<p><span class="invisible_compositerank topic19 topic19_1609">22</span></p>
+				<p><span class="invisible_doctopicrank topic19 topic19_1609">6</span></p>
+				<p><span class="invisible_topicwordrank topic19 topic19_1609">43</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1139">uplifted</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1139">23</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1139">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1139">108</span></p>
+				<p><span class="invisible_topicword topic7 topic7_748">chanced</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_748">24</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_748">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_748">69</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2036">wing</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2036">25</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2036">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2036">110</span></p>
+				<p><span class="invisible_topicword topic11 topic11_1675">open</span></p>
+				<p><span class="invisible_compositerank topic11 topic11_1675">26</span></p>
+				<p><span class="invisible_doctopicrank topic11 topic11_1675">5</span></p>
+				<p><span class="invisible_topicwordrank topic11 topic11_1675">40</span></p>
+				<p><span class="invisible_topicword topic19 topic19_1606">erect</span></p>
+				<p><span class="invisible_compositerank topic19 topic19_1606">27</span></p>
+				<p><span class="invisible_doctopicrank topic19 topic19_1606">6</span></p>
+				<p><span class="invisible_topicwordrank topic19 topic19_1606">57</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2035">bird</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2035">28</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2035">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2035">135</span></p>
+				<p><span class="invisible_topicword topic19 topic19_1605">mainmast</span></p>
+				<p><span class="invisible_compositerank topic19 topic19_1605">29</span></p>
+				<p><span class="invisible_doctopicrank topic19 topic19_1605">6</span></p>
+				<p><span class="invisible_topicwordrank topic19 topic19_1605">59</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1146">feeling</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1146">30</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1146">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1146">109</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1143">spar</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1143">31</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1143">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1143">116</span></p>
+				<p><span class="invisible_topicword topic7 topic7_743">touched</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_743">32</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_743">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_743">84</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1445">leaving</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1445">33</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1445">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1445">66</span></p>
+				<p><span class="invisible_topicword topic19 topic19_1604">indian</span></p>
+				<p><span class="invisible_compositerank topic19 topic19_1604">34</span></p>
+				<p><span class="invisible_doctopicrank topic19 topic19_1604">6</span></p>
+				<p><span class="invisible_topicwordrank topic19 topic19_1604">74</span></p>
+				<p><span class="invisible_topicword topic91 topic91_886">act</span></p>
+				<p><span class="invisible_compositerank topic91 topic91_886">35</span></p>
+				<p><span class="invisible_doctopicrank topic91 topic91_886">7</span></p>
+				<p><span class="invisible_topicwordrank topic91 topic91_886">24</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2023">poured</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2023">36</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2023">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2023">168</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1454">sink</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1454">37</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1454">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1454">91</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1450">submerged</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1450">38</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1450">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1450">80</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2027">billows</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2027">39</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2027">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2027">187</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1141">faster</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1141">40</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1141">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1141">150</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1141">faster</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1141">40</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1141">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1141">150</span></p>
+				<p><span class="invisible_topicword topic7 topic7_741">streaming</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_741">41</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_741">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_741">101</span></p>
+				<p><span class="invisible_topicword topic61 topic61_691">calmly</span></p>
+				<p><span class="invisible_compositerank topic61 topic61_691">42</span></p>
+				<p><span class="invisible_doctopicrank topic61 topic61_691">8</span></p>
+				<p><span class="invisible_topicwordrank topic61 topic61_691">24</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2029">arm</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2029">43</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2029">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2029">255</span></p>
+				<p><span class="invisible_topicword topic11 topic11_1677">shrieks</span></p>
+				<p><span class="invisible_compositerank topic11 topic11_1677">44</span></p>
+				<p><span class="invisible_doctopicrank topic11 topic11_1677">5</span></p>
+				<p><span class="invisible_topicwordrank topic11 topic11_1677">108</span></p>
+				<p><span class="invisible_topicword topic17 topic17_690">red</span></p>
+				<p><span class="invisible_compositerank topic17 topic17_690">45</span></p>
+				<p><span class="invisible_doctopicrank topic17 topic17_690">13</span></p>
+				<p><span class="invisible_topicwordrank topic17 topic17_690">3</span></p>
+				<p><span class="invisible_topicword topic94 topic94_684">upwards</span></p>
+				<p><span class="invisible_compositerank topic94 topic94_684">46</span></p>
+				<p><span class="invisible_doctopicrank topic94 topic94_684">12</span></p>
+				<p><span class="invisible_topicwordrank topic94 topic94_684">22</span></p>
+				<p><span class="invisible_topicword topic11 topic11_1676">heaven</span></p>
+				<p><span class="invisible_compositerank topic11 topic11_1676">47</span></p>
+				<p><span class="invisible_doctopicrank topic11 topic11_1676">5</span></p>
+				<p><span class="invisible_topicwordrank topic11 topic11_1676">129</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1149">hell</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1149">48</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1149">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1149">236</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1142">subsiding</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1142">49</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1142">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1142">207</span></p>
+				<p><span class="invisible_topicword topic91 topic91_888">frozen</span></p>
+				<p><span class="invisible_compositerank topic91 topic91_888">50</span></p>
+				<p><span class="invisible_doctopicrank topic91 topic91_888">7</span></p>
+				<p><span class="invisible_topicwordrank topic91 topic91_888">57</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2024">sunken</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2024">51</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2024">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2024">308</span></p>
+				<p><span class="invisible_topicword topic19 topic19_1611">dragged</span></p>
+				<p><span class="invisible_compositerank topic19 topic19_1611">52</span></p>
+				<p><span class="invisible_doctopicrank topic19 topic19_1611">6</span></p>
+				<p><span class="invisible_topicwordrank topic19 topic19_1611">180</span></p>
+				<p><span class="invisible_topicword topic19 topic19_1607">spar</span></p>
+				<p><span class="invisible_compositerank topic19 topic19_1607">53</span></p>
+				<p><span class="invisible_doctopicrank topic19 topic19_1607">6</span></p>
+				<p><span class="invisible_topicwordrank topic19 topic19_1607">167</span></p>
+				<p><span class="invisible_topicword topic63 topic63_1059">beneath</span></p>
+				<p><span class="invisible_compositerank topic63 topic63_1059">54</span></p>
+				<p><span class="invisible_doctopicrank topic63 topic63_1059">10</span></p>
+				<p><span class="invisible_topicwordrank topic63 topic63_1059">35</span></p>
+				<p><span class="invisible_topicword topic9 topic9_1559">heaven</span></p>
+				<p><span class="invisible_compositerank topic9 topic9_1559">55</span></p>
+				<p><span class="invisible_doctopicrank topic9 topic9_1559">9</span></p>
+				<p><span class="invisible_topicwordrank topic9 topic9_1559">39</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2039">beak</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2039">56</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2039">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2039">408</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2038">thrill</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2038">57</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2038">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2038">390</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2026">undulated</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2026">58</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2026">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2026">387</span></p>
+				<p><span class="invisible_topicword topic86 topic86_978">natural</span></p>
+				<p><span class="invisible_compositerank topic86 topic86_978">59</span></p>
+				<p><span class="invisible_doctopicrank topic86 topic86_978">11</span></p>
+				<p><span class="invisible_topicwordrank topic86 topic86_978">47</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1144">fluttering</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1144">60</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1144">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1144">336</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1138">backwardly</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1138">61</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1138">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1138">541</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1136">coincidings</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1136">62</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1136">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1136">422</span></p>
+				<p><span class="invisible_topicword topic74 topic74_1135">whelmings</span></p>
+				<p><span class="invisible_compositerank topic74 topic74_1135">63</span></p>
+				<p><span class="invisible_doctopicrank topic74 topic74_1135">2</span></p>
+				<p><span class="invisible_topicwordrank topic74 topic74_1135">523</span></p>
+				<p><span class="invisible_topicword topic7 topic7_751">helmeted</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_751">64</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_751">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_751">263</span></p>
+				<p><span class="invisible_topicword topic7 topic7_750">etherial</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_750">65</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_750">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_750">404</span></p>
+				<p><span class="invisible_topicword topic7 topic7_745">main-truck</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_745">66</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_745">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_745">309</span></p>
+				<p><span class="invisible_topicword topic7 topic7_744">tauntingly</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_744">67</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_744">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_744">312</span></p>
+				<p><span class="invisible_topicword topic7 topic7_742">destroying</span></p>
+				<p><span class="invisible_compositerank topic7 topic7_742">68</span></p>
+				<p><span class="invisible_doctopicrank topic7 topic7_742">3</span></p>
+				<p><span class="invisible_topicwordrank topic7 topic7_742">393</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1452">imperial</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1452">69</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1452">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1452">292</span></p>
+				<p><span class="invisible_topicword topic26 topic26_630">savage</span></p>
+				<p><span class="invisible_compositerank topic26 topic26_630">70</span></p>
+				<p><span class="invisible_doctopicrank topic26 topic26_630">14</span></p>
+				<p><span class="invisible_topicwordrank topic26 topic26_630">24</span></p>
+				<p><span class="invisible_topicword topic11 topic11_1679">satan</span></p>
+				<p><span class="invisible_compositerank topic11 topic11_1679">71</span></p>
+				<p><span class="invisible_doctopicrank topic11 topic11_1679">5</span></p>
+				<p><span class="invisible_topicwordrank topic11 topic11_1679">241</span></p>
+				<p><span class="invisible_topicword topic11 topic11_1674">hovered</span></p>
+				<p><span class="invisible_compositerank topic11 topic11_1674">72</span></p>
+				<p><span class="invisible_doctopicrank topic11 topic11_1674">5</span></p>
+				<p><span class="invisible_topicwordrank topic11 topic11_1674">242</span></p>
+				<p><span class="invisible_topicword topic63 topic63_1060">captive</span></p>
+				<p><span class="invisible_compositerank topic63 topic63_1060">73</span></p>
+				<p><span class="invisible_doctopicrank topic63 topic63_1060">10</span></p>
+				<p><span class="invisible_topicwordrank topic63 topic63_1060">86</span></p>
+				<p><span class="invisible_topicword topic9 topic9_1558">visible</span></p>
+				<p><span class="invisible_compositerank topic9 topic9_1558">74</span></p>
+				<p><span class="invisible_doctopicrank topic9 topic9_1558">9</span></p>
+				<p><span class="invisible_topicwordrank topic9 topic9_1558">113</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2033">incommoding</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2033">75</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2033">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2033">507</span></p>
+				<p><span class="invisible_topicword topic57 topic57_2031">sky-hawk</span></p>
+				<p><span class="invisible_compositerank topic57 topic57_2031">76</span></p>
+				<p><span class="invisible_doctopicrank topic57 topic57_2031">1</span></p>
+				<p><span class="invisible_topicwordrank topic57 topic57_2031">476</span></p>
+				<p><span class="invisible_topicword topic90 topic90_918">bird</span></p>
+				<p><span class="invisible_compositerank topic90 topic90_918">77</span></p>
+				<p><span class="invisible_doctopicrank topic90 topic90_918">15</span></p>
+				<p><span class="invisible_topicwordrank topic90 topic90_918">50</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1451">archangelic</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1451">78</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1451">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1451">519</span></p>
+				<p><span class="invisible_topicword topic88 topic88_1447">ironical</span></p>
+				<p><span class="invisible_compositerank topic88 topic88_1447">79</span></p>
+				<p><span class="invisible_doctopicrank topic88 topic88_1447">4</span></p>
+				<p><span class="invisible_topicwordrank topic88 topic88_1447">544</span></p>
+				<p><span class="invisible_topicword topic91 topic91_887">nailing</span></p>
+				<p><span class="invisible_compositerank topic91 topic91_887">80</span></p>
+				<p><span class="invisible_doctopicrank topic91 topic91_887">7</span></p>
+				<p><span class="invisible_topicwordrank topic91 topic91_887">451</span></p>
+				<p><span class="invisible_topicword topic61 topic61_692">pecking</span></p>
+				<p><span class="invisible_compositerank topic61 topic61_692">81</span></p>
+				<p><span class="invisible_doctopicrank topic61 topic61_692">8</span></p>
+				<p><span class="invisible_topicwordrank topic61 topic61_692">203</span></p>
+				<p><span class="invisible_topicword topic61 topic61_690">intermixingly</span></p>
+				<p><span class="invisible_compositerank topic61 topic61_690">82</span></p>
+				<p><span class="invisible_doctopicrank topic61 topic61_690">8</span></p>
+				<p><span class="invisible_topicwordrank topic61 topic61_690">252</span></p>
+				<p><span class="invisible_topicword topic94 topic94_683">death-gasp</span></p>
+				<p><span class="invisible_compositerank topic94 topic94_683">83</span></p>
+				<p><span class="invisible_doctopicrank topic94 topic94_683">12</span></p>
+				<p><span class="invisible_topicwordrank topic94 topic94_683">431</span></p>
+				<p><span class="invisible_topicword topic86 topic86_979">intercept</span></p>
+				<p><span class="invisible_compositerank topic86 topic86_979">84</span></p>
+				<p><span class="invisible_doctopicrank topic86 topic86_979">11</span></p>
+				<p><span class="invisible_topicwordrank topic86 topic86_979">375</span></p>
+			</div>
+		</footer>
+	</body>
+</html>

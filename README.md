@@ -11,6 +11,7 @@
 * [How to Use](#how_to_use)
   * [YAML Configuration File](#yaml_config_file)
   * [Python Script](#python_script)
+* [Example HTML Files](#example_files)
 * [Technical Notes & Known Issues](#known_issues)
 
 
@@ -20,7 +21,7 @@
 
 ## Overview
 
-  **TWiC Close Reading** (TCR) is a Python script that generates interactive HTML files for texts that have been modeled by the [MALLET topic modeler](http://mallet.cs.umass.edu/). It leans on code and ideas from my previous D3 visualization for topic models, ["Topic Words in Context" or "TWiC"](https://github.com/jarmoza/twic), which offers a more comprehensive look at topic models. *TCR* is built to look at the texts themselves under the lens of the topic weights in each text, and topic word weights in their topics. While *TWiC* already provides a similar view in its "Text View" panel, *TCR* is meant to give a more lightweight, more informative and easily browsable version of this view. The idea here is to facilitate making substantive connections between a human-authored text and the underlying statistical data that models it. Below is a sample image so you can get an idea of what such a view looks like on one of the last paragraphs of Herman Melville's *Moby-Dick* (spoiler alert).
+  **TWiC Close Reading** (TCR) is a Python script that generates interactive HTML files for texts that have been modeled by the [MALLET topic modeler](http://mallet.cs.umass.edu/). It leans on code and ideas from my previous D3 visualization for topic models, ["Topic Words in Context" or "TWiC"](https://github.com/jarmoza/twic), which offers a more comprehensive look at topic models. *TCR* is built to look at the texts themselves under the lens of the topic weights in each text, and topic word weights in their topics. While *TWiC* already provides a similar view in its "Text View" panel, *TCR* is meant to give a more lightweight, more informative and easily browsable version of this view. The idea here is to facilitate making substantive connections between a human-authored text and the underlying statistical data that models it. Below is a sample image so you can get an idea of what such a view looks like. Here it is visited on one of the last paragraphs of Herman Melville's *Moby-Dick* (spoiler alert).
 
   ![TCR Example Image](images/tcr_example_image.png)
 
@@ -30,7 +31,7 @@
 
   **The Modeled Text**
 
-  In the view above of a single text considered by the topic model, topics - and thus the words from them - are each given a unique color. On the left is a view of the full text with those colored words. (Really a topic model considers each text as a "bag" of words without order, but here we reinstitute the human-authored ordering for *context*.) Just scroll down to see more of the text. Mousing over each word will highlight it and any other instance of that word in the text in white. This will also result in any other word from that the topic of that word to be highlighted in gray. Corresponding words in the composite rank word list on the right are also highlighted. This portion of the view is [explained below](#topicwords_orderedby_comprank).
+  In the view above of a single text considered by the topic model, topics - and thus the words from them - are each given a unique color. On the left is a view of the full text with those colored words. (Really a topic model considers each text as a "bag" of words without order, but here we reinstitute the human-authored ordering for *context*.) Just scroll down to see more of the text. Mousing over each word will highlight it and any other instance of that word in the text in white. This will also result in any other word from the topic of that word to be highlighted in gray. Corresponding words in the composite rank word list on the right are also highlighted. This portion of the view is [explained below](#topicwords_orderedby_comprank). (Note: Some browsing of the text and composite rank word list may be necessary to find all related topic words.)
 
   <a name="model_data">
 
@@ -66,7 +67,7 @@
 
   **Topic Words ordered by Composite Rank**
 
-  On the right is a list of all of the words in the text ordered by the composite rank explained above. (Multiple instances of words are included and are given the same rank.) These topic words also highlight upon mouseover in the same way they do for the text. Mousing over these words will also highlight corresponding words from this topic in the text. Scrolling down will reveal more of this list. Listed next to each word in parentheses are their document-topic rank and topic-word rank.
+  On the right is a list of all of the words in the text ordered by the composite rank (see the description just above this section). Multiple instances of words are included and are given the same rank. Listed next to each word in parentheses are their document-topic rank and topic-word rank. These topic words also highlight upon mouseover in the same way they do for the text. Mousing over the words will also highlight corresponding words from this topic in the text on the left. Scrolling down will reveal more of this list. 
 
 
 <a name="how_to_use">
@@ -127,6 +128,15 @@
   Once you have filled in all the fields in `tcr_config.yaml`, just run *TWiC Close Reading's* primary Python script: `python twic_close_reading.py`. (Note: This script does rely on a few other Python scripts stored in the `lib` folder, so you do need to leave it in place in the root folder of *TCR*.)
 
 
+<a name="example_files">
+
+</a>
+
+## Example HTML Files
+
+  Example HTML files generated by *TWiC Close Reading* from a topic model of the paragraphs of Herman Melville's *Moby-Dick; or, The Whale*, *Bartleby, the Scrivener: A Story of Wall Street*, *Pierre; or, The Ambiguities*, and *Billy Budd, Sailor* are included in the folder `data/output/example`. (Just a few HTML files are given. The entire modeled corpus is just under 5,000 files.)
+
+
 <a name="known_issues">
 
 </a>
@@ -136,5 +146,5 @@
   * *TWiC Close Reading* (TCR) is compatible with [MALLET versions 2.0.8](http://mallet.cs.umass.edu/download.php) and higher
   * Please be aware that for some texts, MALLET may not produce state file data. If no state file data is detected for a text, TCR will not produce an HTML file for it since that data is an integral part of its output. (This may be a known or expected issue. I will be inquiring on the [MALLET github project](https://github.com/mimno/Mallet) about it in the near future.)
   * Currently my implementation of scrolling through multiple panels in Twitter bootstrap columns is a little glitchy. More of the text and composite rank list is available by scrolling downward in the respective panel/part of the *TCR* window.
-  * *TCR* should be functional across MacOS, Windows, and Linux. Its Python script detects and uses the appropriate folder separator character.
   * Expected text encoding is *UTF-8*
+  * *TCR* should be functional across MacOS, Windows, and Linux. Its Python script detects and uses the appropriate folder separator character. However, there is currently no support for the `\r\n` combined carriage return + linefeed character.
