@@ -1,4 +1,5 @@
 css/bootstrap.min.css linguist-vendored
+data/output/example/* linguist-vendored
 js/bootstrap.min.js linguist-vendored
 js/jquery-3.2.1.min.js linguist-vendored
 lib/mpmath/* linguist-vendored
