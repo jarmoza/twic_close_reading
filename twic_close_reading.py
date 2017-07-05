@@ -1,5 +1,6 @@
 import json
 import os
+import string
 import sys
 
 def load_src(name, fpath):
@@ -18,35 +19,15 @@ load_src("utils_color", os.path.join("lib", "twic", "utils", "utils_color.py"))
 from utils_color import Utils_Color
 
 
-def strip_punctuation(p_word):
+def strip_punctuation_lowercase(p_word):
 
-    # Lowercase and clear whitespace
-    p_word = p_word.lower().strip()
-
-    # Find the first and last alphabetic characters
-    first_index = 0
-    found_alnum = False
-    for index in range(len(p_word)):
-        if str(p_word[index]).isalnum():
-            first_index = index
-            found_alnum = True
-            break
-    last_index = len(p_word) - 1
-    for index in reversed(range(len(p_word))):
-        if str(p_word[index]).isalnum():
-            last_index = index
-            found_alnum = True
-            break
-
-    # Strip outside non-alphabetic characters
-    p_word = p_word[first_index:last_index + 1] if found_alnum else ""
-
-    return p_word
+    # Make lowercase, clear leading/trailing whitespace and punctuation
+    return p_word.lower().strip().strip(string.punctuation)
 
 
 def read_yaml():
 
-    yaml_filepath = os.getcwd() + os.sep + "tcr_config.yaml"
+    yaml_filepath = "{0}{1}tcr_config.yaml".format(os.getcwd(), os.sep)
     
     if not os.path.isfile(yaml_filepath):
         return None
@@ -182,8 +163,8 @@ def main():
 
     print "\nTopic Words in Context (TWiC) Close Reading"
     print "\tby Jonathan Armoza (github.com/jarmoza), 2017.\n"
-    print "This work is licensed under a"
-    print "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.\n"
+    print "This work is licensed under the GNU General Public License, Version 3.0."
+    print "See https://www.gnu.org/licenses/gpl-3.0.en.html for details.\n"
 
     # 1. Read MALLET filenames, output path
     print "Reading YAML file..."
@@ -258,7 +239,7 @@ def main():
                     present_topics.append(word_topic_id)
                     word = twic_text_json[text_filename]["document"]["lines_and_colors"][line_index][0][word_index]
                     text_topic_weight = twic_text_topicweights[text_filename][word_topic_id]
-                    word_sans_punc = strip_punctuation(word)
+                    word_sans_punc = strip_punctuation_lowercase(word)
 
                     # Add this word to the topic_word_id_table (assigns class numeric word IDs)
                     if word_topic_id not in topic_word_id_table:
@@ -353,7 +334,7 @@ def main():
                         word_topic_id = twic_text_json[text_filename]["document"]["lines_and_colors"][line_index][1][str(word_index)]
                         word_color = color_list[int(word_topic_id)]
                         word = twic_text_json[text_filename]["document"]["lines_and_colors"][line_index][0][word_index]
-                        word_sans_punc = strip_punctuation(word)
+                        word_sans_punc = strip_punctuation_lowercase(word)
                         text_topic_weight = twic_text_topicweights[text_filename][word_topic_id]
 
                         if word_sans_punc in ww_table[word_topic_id]:
@@ -391,11 +372,11 @@ def main():
             output_html_file.write("\t\t\t\t<div class=\"col-xs-{0} col-sm-{0} col-md-{0} col-lg-{0} wordweightcolumn\">\n".format(weights_column_width))
 
             list_index = 0
-            current_word = strip_punctuation(ordered_word_list[0][0])
+            current_word = strip_punctuation_lowercase(ordered_word_list[0][0])
             output_html_file.write("\t\t\t\t\t<p><span class=\"normword\">Composite Rank. (doc topic rank, topic word rank)</span></p><br/>\n")
             for index in reversed(range(len(ordered_word_list))):
                 if str(ordered_word_list[index][3]) in twic_text_json[text_filename]["document"]["lines_and_colors"][ordered_word_list[index][4]][1]:
-                    word_sans_punc = strip_punctuation(ordered_word_list[index][0])
+                    word_sans_punc = strip_punctuation_lowercase(ordered_word_list[index][0])
                     if word_sans_punc != current_word:
                         current_word = word_sans_punc
                         list_index += 1
@@ -457,10 +438,10 @@ def main():
 
             # Invisible word stats - their text will go into the visible topic word list span
             list_index = 0
-            current_word = strip_punctuation(ordered_word_list[0][0])            
+            current_word = strip_punctuation_lowercase(ordered_word_list[0][0])
             for index in reversed(range(len(ordered_word_list))):
                 if str(ordered_word_list[index][3]) in twic_text_json[text_filename]["document"]["lines_and_colors"][ordered_word_list[index][4]][1]:
-                    word_sans_punc = strip_punctuation(ordered_word_list[index][0])
+                    word_sans_punc = strip_punctuation_lowercase(ordered_word_list[index][0])                    
                     if word_sans_punc != current_word:
                         current_word = word_sans_punc
                         list_index += 1
