@@ -39,7 +39,7 @@
 
   **Model Data**
 
-  On the bottom is a view of the output model data with one additional metric. This information is supplied as one mouses over topic words: 
+  On the bottom is a view of the output model data with one additional metric. This information is supplied as one mouses over topic words:
 
   **1.** Topic word<br/>
   **2.** Top 20 words of that topic (ranked by their topic-word weight)<br/>
@@ -67,7 +67,7 @@
 
   **Topic Words ordered by Composite Rank**
 
-  On the right is a list of all of the words in the text ordered by the composite rank (see the description just above this section). Multiple instances of words are included and are given the same rank. Listed next to each word in parentheses are their document-topic rank and topic-word rank. These topic words also highlight upon mouseover in the same way they do for the text. Mousing over the words will also highlight corresponding words from this topic in the text on the left. Scrolling down will reveal more of this list. 
+  On the right is a list of all of the words in the text ordered by the composite rank (see the description just above this section). Multiple instances of words are included and are given the same rank. Listed next to each word in parentheses are their document-topic rank and topic-word rank. These topic words also highlight upon mouseover in the same way they do for the text. Mousing over the words will also highlight corresponding words from this topic in the text on the left. Scrolling down will reveal more of this list. NOTE: You will notice that composite, document-topic, and/or topic-word rankings are sometimes strikingly the same for a string of topic words listed in the composite rank panel. This is not a bug. For topics with near-nil probability within documents and topic words with near-nil probability within topics, a very low dummy weight is assigned. This has the effect of producing the similarly ranked topic words.
 
 
 <a name="how_to_use">
@@ -79,7 +79,7 @@
   Using TWiC Close Reading (TCR) is a simple, two-step process:
 
   **1.** Edit the script's YAML configuration file in the root folder, `tcr_config.yaml`.<br/>
-  **2.** Run TCR's primary Python script, `twic_close_reading.py`. 
+  **2.** Run TCR's primary Python script, `twic_close_reading.py`.
 
   <a name="yaml_config_file">
 
@@ -144,7 +144,6 @@
 ## Technical Notes & Known Issues
 
   * *TWiC Close Reading* (TCR) is compatible with [MALLET versions 2.0.8](http://mallet.cs.umass.edu/download.php) and higher
-  * Please be aware that for some texts, MALLET may not produce state file data. If no state file data is detected for a text, TCR will not produce an HTML file for it since that data is an integral part of its output. (This may be a known or expected issue. I will be inquiring on the [MALLET github project](https://github.com/mimno/Mallet) about it in the near future.)
-  * Currently my implementation of scrolling through multiple panels in Twitter bootstrap columns is a little glitchy. More of the text and composite rank list is available by scrolling downward in the respective panel/part of the *TCR* window.
+  * Please be aware that for some texts, MALLET may not produce state file data. If no state file data is detected for a text, TCR will not produce an HTML file for it since that data is an integral part of its output. A file, `tcr_unprocessed.txt`, will be output into TCR's root folder listing the text files which did not have an HTML file produced for them.
   * Expected text encoding is *UTF-8*
   * *TCR* should be functional across MacOS, Windows, and Linux. Its Python script detects and uses the appropriate folder separator character. However, there is currently no support for the `\r\n` combined carriage return + linefeed character.
