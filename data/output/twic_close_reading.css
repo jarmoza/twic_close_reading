@@ -3,7 +3,7 @@ body {
     background-color: black;
 
    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizelegibility;    
+    text-rendering: optimizelegibility;
 }
 
 p {
@@ -38,9 +38,15 @@ p {
     overflow: scroll;
 }
 
+.fulltext {
+  overflow-y: scroll;
+  height: 100%;
+}
+
 .wordweightcolumn {
     height: 72vh;
     overflow-y: scroll;
+    height: 100%;
 }
 
 .invisible_topicwordlist {

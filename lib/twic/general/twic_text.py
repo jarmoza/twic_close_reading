@@ -19,6 +19,7 @@ from unidecode import unidecode
 
 class TWiC_Text:
 
+    # Used
     def __init__(self, filepath):
 
         self.__m_file_path = filepath
@@ -28,16 +29,10 @@ class TWiC_Text:
         self.__full_text = self.__get_full_text()
         self.PrepareForComparison(False)
 
-
+    # Used
     def __get_full_text(self):
 
         full_text = ""
-        # fullpath_cleanedspaces = urllib2.unquote(self.__m_file_path)
-        # lastSlash = fullpath_cleanedspaces.rfind("/")
-        # filepath = fullpath_cleanedspaces[0:lastSlash]
-        # filename = fullpath_cleanedspaces[lastSlash:]
-        # firstUnderscore = filename.find("_")
-        # filename = filename[firstUnderscore + 1:]
 
         with open(self.__m_file_path, "rU") as textfile_ptr:
             lines = textfile_ptr.readlines()
@@ -113,11 +108,12 @@ class TWiC_Text:
         return self.__m_file_directory
 
 
+    # Used
     def GetFileExtension(self):
 
         return self.__m_file_ext
 
-
+    # Used
     def GetFilename(self):
 
         return self.__m_file_name
@@ -128,6 +124,7 @@ class TWiC_Text:
         return self.__m_file_path
 
 
+    # Used
     def GetFullText(self):
 
         return self.__full_text
@@ -149,10 +146,9 @@ class TWiC_Text:
         # In current implemenation for general texts, no publication data is listed
         return ""
 
-
+    # Used
     def GetTitle(self):
 
-        # return self.GetFilename().split("_")[1]
         return self.GetFilename()[self.GetFilename().find("_") + 1:]
 
 
@@ -161,15 +157,14 @@ class TWiC_Text:
         return None != self.__my_lines
 
 
+    # Used
     def PrepareForComparison(self, p_keep_multinewline = False):
 
         # Initially split lines by newlines characters present
         if p_keep_multinewline:
             self.__my_lines = self.GetFullText().split("\n")
         else:
-            self.__my_lines = re.sub(r'[\n]+', '\n', self.GetFullText()).split('\n')
-        #for index in range(len(self.__my_lines)):
-        #    self.__my_lines[index].append(self.__my_lines[index][0].strip().split(' '))
+            self.__my_lines = re.sub(r"[\n]+", "\n", self.GetFullText()).split("\n")
 
         # Keep lines to a maximum character length
         # (improvement added for better visualization of texts)

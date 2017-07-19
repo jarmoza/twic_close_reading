@@ -182,7 +182,6 @@ class Utils_MalletInterpret:
         return len(p_line.strip().split(p_sep))
 
 
-
     @staticmethod
     def TimeAndRun(function, optional_text, *args):
 
